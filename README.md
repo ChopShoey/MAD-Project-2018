@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+# MAD Game Collection
 
-You can use the [editor on GitHub](https://github.com/ChopShoey/MAD-Project-2019/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Purpose
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This game collection is developed as a project for the spring semester offering of Oklahoma Christian's CMSC 5233 Mobile Application Development (MAD) course. The goal is to provide a NativeScript application that utilizes a publicly available web API.
 
-### Markdown
+## Description
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+This application will provide three basic games that utilize a public facing global leaderboard. A target API for this effort is the Google Play Services API. A basic navigational interface will be included to move between the various games and access the leaderboards for each area.
 
-```markdown
-Syntax highlighted code block
+### Framework/Toolset
 
-# Header 1
-## Header 2
-### Header 3
+This application is being targeted on NativeScript, and utilizes Angular/Typescript.
 
-- Bulleted
-- List
+### Game List
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ChopShoey/MAD-Project-2019/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+The final application will include basic game interfaces for:
+- Gladiator Arena
+- Angry Cat
+- Unnamed PacMan style arcade game
