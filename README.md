@@ -17,4 +17,4 @@ This application is being targeted on NativeScript, and utilizes Angular/Typescr
 The final application will include basic game interfaces for:
 - Gladiator Arena
 - Angry Cat
-- Unnamed PacMan style arcade game
+- Sudoku
