@@ -11,7 +11,6 @@ export class TimestampConsoleWriter implements trace.TraceWriter {
     }
 
     write(message, category, type) {
-        // console.log(`Writing ${message} to the log`);
         if (!console) {
             return;
         }

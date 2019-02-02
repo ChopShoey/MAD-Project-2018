@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman, Paul Christy, Diane Truong
+// Authors: Lee Shuman and Diane Truong
 
 import { Component, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.playerService.isPlayerNameSet() ? this._activatedUrl = "/home" : this._activatedUrl = "/settings";
+        this.playerService.isPlayerNameSet() ? this._activatedUrl = "/arena/landing" : this._activatedUrl = "/settings";
         this._sideDrawerTransition = new SlideInOnTopTransition();
         this.router.navigateByUrl(this._activatedUrl);
 

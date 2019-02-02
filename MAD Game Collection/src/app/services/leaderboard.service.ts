@@ -4,6 +4,7 @@
 
 import { Injectable } from "@angular/core";
 import * as httpModule from "tns-core-modules/http";
+import * as trace from "tns-core-modules/trace";
 import { LeaderboardEntry } from "../shared/leaderboardEntry";
 
 @Injectable({
@@ -30,8 +31,8 @@ export class LeaderboardService {
                 };
                 this.leaderboardEntries.push(leaderboardEntry);
             });
-        }, (e) => {
-            console.log(e);
+        }, (error) => {
+            trace.error(error);
         });
     }
 }

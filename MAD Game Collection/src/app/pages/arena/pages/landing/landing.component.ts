@@ -3,7 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { EventData } from "tns-core-modules/ui/page/page";
+import * as trace from "tns-core-modules/trace";
+import { EventData, traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field/text-field";
 import { GladiatorService } from "../../services/gladiator.service";
 
@@ -28,10 +29,10 @@ export class ArenaLandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.gladiatorService.gladiator.name);
     if (this.gladiatorService.gladiator.name !== null) {
       this.router.navigateByUrl("arena/arena");
-      console.log(`Gladiator name was ${this.gladiatorService.gladiator.name}`);
+      trace.write(`Rerouting to the arena, gladiator name was ${this.gladiatorService.gladiator.name}`,
+                  traceCategories.Debug, traceMessageType.info);
     }
   }
 
@@ -57,7 +58,7 @@ export class ArenaLandingComponent implements OnInit {
       this.gladiatorService.setGladiatorName(gladiatorName);
       this.router.navigateByUrl("arena/arena");
     } catch (error) {
-      console.log(`Caught ${error}, stay on page`);
+      trace.error(error);
     }
   }
 }

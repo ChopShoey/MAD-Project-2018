@@ -7,6 +7,7 @@ import * as httpModule from "http";
 import * as trace from "tns-core-modules/trace";
 import { GameIDService } from "./gameID.service";
 import { PlayerService } from "./player.service";
+import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 
 const validScoreRegex = /^[0-9]{1,9}$/;
 
@@ -23,7 +24,7 @@ export class ScoreRegistrationService {
         if (validScoreRegex.test(score.toString()) && this.gameIDService.guidRegex.test(gameID)) {
             const serverURL = "https://game-collection-leaderboard.glitch.me/api/v1/score?player_id=" +
             this.playerService.playerInfo.guid + "&game_id=" + gameID + "&score=" + score;
-            console.log(serverURL);
+            trace.write(`Posting to ${serverURL}`, traceCategories.Debug, traceMessageType.log);
 
             httpModule.request({
                 url: serverURL,
