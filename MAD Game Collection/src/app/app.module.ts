@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman, Paul Christy, Diane Truong
+// Authors: Lee Shuman and Diane Truong
 
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
@@ -13,7 +13,6 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LeaderboardComponent } from "./pages/leaderboard/leaderboard.component";
 import { PageNotFoundComponent } from "./pages/pageNotFound/pageNotFound.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
-import { SudokuComponent } from "./pages/sudoku/sudoku.component";
 
 @NgModule({
     bootstrap: [
@@ -30,7 +29,6 @@ import { SudokuComponent } from "./pages/sudoku/sudoku.component";
         AppComponent,
         HomeComponent,
         CatsComponent,
-        SudokuComponent,
         LeaderboardComponent,
         SettingsComponent,
         PageNotFoundComponent

@@ -4,8 +4,9 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
+import * as trace from "tns-core-modules/trace";
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import { EventData } from "tns-core-modules/ui/page/page";
+import { EventData, traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field";
 import { PlayerService } from "~/app/services/player.service";
 
@@ -54,7 +55,7 @@ export class SettingsComponent {
             this.playerService.postPlayerName(playerName.trim(), this.onSuccessfulPost, this);
             // this.router.navigateByUrl("/home");
         } catch (error) {
-            console.log(`Caught ${error}`);
+            trace.error(error);
         }
     }
 
@@ -63,7 +64,7 @@ export class SettingsComponent {
             settingsComponent.router.navigateByUrl("/home");
         } else {
             dialogs.alert("Name could not be updated").then(() => {
-                console.log("Dialog closed");
+                trace.write("Dialog closed", traceCategories.Debug, traceMessageType.error);
             });
         }
     }

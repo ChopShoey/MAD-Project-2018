@@ -39,9 +39,4 @@ export class LeaderboardComponent implements OnInit {
         this.gameIndex = GamesEnum.GLADIATOR_COMBAT;
         this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
     }
-
-    onTapSudoku(): void {
-        this.gameIndex = GamesEnum.SUDOKU;
-        this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.SUDOKU));
-    }
 }

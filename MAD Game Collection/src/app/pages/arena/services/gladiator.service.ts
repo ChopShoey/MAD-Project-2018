@@ -22,15 +22,10 @@ export class GladiatorService {
         if (applicationSettingsModule.hasKey(gladiatorNameKey)) {
             // Load up the gladiator properties from settings
             const name = applicationSettingsModule.getString(gladiatorNameKey);
-            // const strength = applicationSettingsModule.getNumber(gladiatorStrengthKey);
-            console.log("Should be tracing");
             trace.write(`name constant is ${name}`, trace.categories.Debug, trace.messageType.log);
             this.gladiator = new Gladiator(name);
 
             // Load stats from settings
-            trace.write(typeof(this.gladiator.gladiatorStatistics.strength),
-                trace.categories.Debug, trace.messageType.info);
-
             const newStats = new GladiatorStatistics();
             newStats.strength = applicationSettingsModule.getNumber(
                 GladiatorStatistics.strengthKey, GladiatorStatistics.baseStatValue);
@@ -44,26 +39,26 @@ export class GladiatorService {
                 GladiatorStatistics.enduranceKey, GladiatorStatistics.baseStatValue);
             this.gladiator.gladiatorStatistics = newStats;
 
-            trace.write(`Created ${this.gladiator.name} with stats:
-\tStrength: ${this.gladiator.gladiatorStatistics.strength}
-\tAgility: ${this.gladiator.gladiatorStatistics.agility}
-\tDefense: ${this.gladiator.gladiatorStatistics.defense}
-\tVitality: ${this.gladiator.gladiatorStatistics.vitality}
-\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}`,
-traceCategories.Debug,
-traceMessageType.info);
+            trace.write(`Created ${this.gladiator.name} with stats:\n` +
+                        `\tStrength: ${this.gladiator.gladiatorStatistics.strength}\n` +
+                        `\tAgility: ${this.gladiator.gladiatorStatistics.agility}\n` +
+                        `\tDefense: ${this.gladiator.gladiatorStatistics.defense}\n` +
+                        `\tVitality: ${this.gladiator.gladiatorStatistics.vitality}\n` +
+                        `\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}\n`,
+                        traceCategories.Debug,
+                        traceMessageType.info);
         } else {
             this.gladiator = new Gladiator(null);
-            trace.write(`Created a new gladiator with no name with stats:
-\tStrength: ${this.gladiator.gladiatorStatistics.strength}
-\tAgility: ${this.gladiator.gladiatorStatistics.agility}
-\tDefense: ${this.gladiator.gladiatorStatistics.defense}
-\tVitality: ${this.gladiator.gladiatorStatistics.vitality}
-\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}`,
-traceCategories.Debug,
-traceMessageType.info);
+            trace.write(`Created a new gladiator with no name with default base stats:\n` +
+                        `\tStrength: ${this.gladiator.gladiatorStatistics.strength}\n` +
+                        `\tAgility: ${this.gladiator.gladiatorStatistics.agility}\n` +
+                        `\tDefense: ${this.gladiator.gladiatorStatistics.defense}\n` +
+                        `\tVitality: ${this.gladiator.gladiatorStatistics.vitality}\n` +
+                        `\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}\n`,
+                        traceCategories.Debug,
+                        traceMessageType.info);
         }
-        console.log(`Initialized gladiator as ${this.gladiator.name}`);
+        trace.write(`Initialized gladiator as ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
     }
 
     setGladiatorName(proposedName: string) {
@@ -73,9 +68,10 @@ traceMessageType.info);
             const newName = proposedName.trim();
             // If newName is falsey then it can throw as well
             newName ? this.gladiator.name = newName : trace.error("Gladiator name cannot be falsey");
-            console.log(`Gladiator name is now ${this.gladiator.name}`);
+            trace.write(`Gladiator name is now ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
             applicationSettingsModule.setString(gladiatorNameKey, this.gladiator.name);
-            console.log(`Saved gladiator name as ${applicationSettingsModule.getString(gladiatorNameKey)}`);
+            trace.write(`Saved gladiator name as ${applicationSettingsModule.getString(gladiatorNameKey)}`,
+                        traceCategories.Debug, traceMessageType.info);
         } catch (error) {
             // Don't handle broad exceptions here
             trace.error(error);
