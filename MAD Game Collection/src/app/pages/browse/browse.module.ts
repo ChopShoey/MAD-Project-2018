@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { BrowseRoutingModule } from "./browse-routing.module";
 import { BrowseComponent } from "./browse.component";
+import { AngryCatsComponent } from './angry-cats/angry-cats.component';
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import { BrowseComponent } from "./browse.component";
         BrowseRoutingModule
     ],
     declarations: [
-        BrowseComponent
+        BrowseComponent,
+        AngryCatsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
