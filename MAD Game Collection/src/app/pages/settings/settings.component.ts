@@ -21,4 +21,8 @@ export class SettingsComponent implements OnInit {
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.showDrawer();
     }
+
+    onReturnPress(): void {
+        // do the button press thing
+    }
 }
