@@ -1,0 +1,52 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Sudoku"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <Label class="page-icon fa" text="&#xf005;"></Label>
+    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
+
+    <Label text="hi"></Label>
+
+    <form>
+        First name:<br>
+        <input type="text" name="firstname"><br> Last name:<br>
+        <input type="text" name="lastname">
+    </form>
+
+</GridLayout>
+
+<GridLayout>
+    <!--Sudoku Grid-->
+    <table>
+
+        <!--Row A-->
+        <tr>
+            <td>thus<input id="cellA1" type="text" name=""></td>
+        </tr>
+
+    </table>
+</GridLayout>
+
+<StackLayout class="login-screen">
+    <Label class="h1 logo" text="logo"></Label>
+    <StackLayout class="form login-form">
+        <TextField hint="Name"></TextField>
+        <Button class="btn sign-in-button" (tap)="signInTapped()" text="Sign in"></Button>
+        <Label class="forgot-password" text="Forgotten your password?"></Label>
+    </StackLayout>
+    <Button class="btn sign-in-with-facebook-button" text="Sign in with facebook"></Button>
+    <Label [nsRouterLink]="['/auth/create']" class="btn create-account-button" text="Create an account"></Label>
+</StackLayout>
