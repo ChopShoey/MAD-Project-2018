@@ -4,6 +4,12 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { ArenaComponent } from "./pages/arena/arena.component";
+import { CatsComponent } from "./pages/cats/cats.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { LeaderboardComponent } from "./pages/leaderboard/leaderboard.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
+import { SudokuComponent } from "./pages/sudoku/sudoku.component";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +21,13 @@ import { AppComponent } from "./app.component";
         NativeScriptUISideDrawerModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent,
+        ArenaComponent,
+        CatsComponent,
+        SudokuComponent,
+        LeaderboardComponent,
+        SettingsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
