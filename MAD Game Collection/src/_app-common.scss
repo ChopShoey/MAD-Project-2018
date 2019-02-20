@@ -4,6 +4,13 @@
 .fa {
     font-family: "FontAwesome";
 }
+.far {
+    font-family: "fa-regular-400";
+}
+.fas {
+    font-family: "fa-solid-900";
+}
+
 // Common page class
 .page-content {
     .page-placeholder {
@@ -11,8 +18,9 @@
         font-size: $page-content-placeholder-font-size;
         vertical-align: center;
         horizontal-align: center;
+        
     }
-
+    
     .page-icon {
         font-size: 72;
         vertical-align: top;
@@ -20,6 +28,13 @@
         color: $page-icon-color;
         margin-top: 20%;
     }
+}
+
+.info-text {
+    word-wrap: normal;
+    font-size: 20;
+    text-align: center;
+    padding: 10;
 }
 
 //Action bar

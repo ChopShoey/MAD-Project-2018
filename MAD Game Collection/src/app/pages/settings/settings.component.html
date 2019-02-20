@@ -15,7 +15,27 @@
     <Label class="action-bar-title" text="Settings"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf013;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
+<GridLayout class="page page-content" columns="*" rows="auto,auto,auto,auto">
+    <Label  class="page-icon far" 
+            text="&#xf582;" 
+            row="0">
+    </Label>
+    <Label  class="info-text" 
+            text="Please enter a name as you would like it to be displayed on our leaderboards" 
+            width=100% 
+            textWrap="true" 
+            row="1">
+    </Label>
+    <TextField  hint="Enter your name" 
+                secure="false" 
+                returnKeyType="done" 
+                autocorrect="false" 
+                maxLength="15" 
+                class="input input-border" 
+                row="2" 
+                (returnPress)="onReturnPress($event)" >
+    </TextField>
+    <Button class="btn btn-primary" 
+            text="Submit" 
+            row="3"></Button>>
 </GridLayout>
