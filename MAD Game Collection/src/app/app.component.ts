@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+// Author/s: Lee Shuman, Paul Christy, Diane Truong
+
+import { Component, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
+import { PlayerService } from "./services/player.service";
 
 @Component({
     moduleId: module.id,
@@ -14,13 +17,16 @@ export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router,
+                private routerExtensions: RouterExtensions,
+                private playerService: PlayerService) {
         // Use the component constructor to inject services.
     }
 
     ngOnInit(): void {
-        this._activatedUrl = "/home";
+        this.playerService.isPlayerNameSet() ? this._activatedUrl = "/home" : this._activatedUrl = "/settings";
         this._sideDrawerTransition = new SlideInOnTopTransition();
+        this.router.navigateByUrl(this._activatedUrl);
 
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))

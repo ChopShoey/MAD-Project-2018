@@ -1,3 +1,5 @@
+// Author/s: Lee Shuman, Paul Christy, Diane Truong
+
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 // Font icon class
@@ -72,8 +74,9 @@ $sidedrawer-list-icon-size: 20;
     .sidedrawer-header {
         background-color: $ab-background;
 
-        .sidedrawer-header-brand {
+        .sidedrawer-player-name {
             color: $ab-color;
+            font-size: 24;
         }
     }
 
@@ -91,6 +94,14 @@ $sidedrawer-list-icon-size: 20;
                 color: $blue-dark;
             }
             .fa {
+                width: $sidedrawer-list-icon-size;
+                margin-right: $sidedrawer-list-icon-offset;
+            }
+            .fas {
+                width: $sidedrawer-list-icon-size;
+                margin-right: $sidedrawer-list-icon-offset;
+            }
+            .far {
                 width: $sidedrawer-list-icon-size;
                 margin-right: $sidedrawer-list-icon-offset;
             }

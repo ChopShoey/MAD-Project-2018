@@ -1,3 +1,5 @@
+// Author/s: Lee Shuman, Paul Christy, Diane Truong
+
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
@@ -9,7 +11,6 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { SudokuComponent } from "./pages/sudoku/sudoku.component";
 
 const routes: Routes = [
-    // tslint:disable-next-line:max-line-length
     { path: "", redirectTo: "/home)", pathMatch: "full" },
     { path: "home", component: HomeComponent },
     { path: "arena", component: ArenaComponent },
