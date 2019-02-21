@@ -1,16 +1,25 @@
+<!-- Author/s: Lee Shuman -->
+
 <ActionBar class="action-bar">
     <!-- 
     Use the NavigationButton as a side-drawer button in Android
     because ActionItems are shown on the right side of the ActionBar
     -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <NavigationButton   ios:visibility="collapsed" 
+                        icon="res://menu" 
+                        (tap)="onDrawerButtonTap()"
+                        visibility="{{this.playerService.isPlayerNameSet() ? 'visible' : 'hidden'}}">
+    </NavigationButton>
     <!-- 
     Use the ActionItem for IOS with position set to left. Using the
     NavigationButton as a side-drawer button in iOS is not possible,
     because its function is to always navigate back in the application.
     -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-        ios.position="left">
+    <ActionItem icon="res://navigation/menu" 
+                android:visibility="collapsed" 
+                (tap)="onDrawerButtonTap()"
+                ios.position="left" 
+                visibility="{{this.playerService.isPlayerNameSet() ? 'visible' : 'hidden'}}">
     </ActionItem>
     <Label class="action-bar-title" text="Settings"></Label>
 </ActionBar>
@@ -21,7 +30,7 @@
             row="0">
     </Label>
     <Label  class="info-text" 
-            text="Please enter a name as you would like it to be displayed on our leaderboards" 
+            text="{{this.playerService.isPlayerNameSet() ? 'Your name is currently displayed as ' + this.playerService.playerInfo.name + '. Would you like to change it?' : 'Please enter a name as you would like it to be displayed on our leaderboards'}}" 
             width=100% 
             textWrap="true" 
             row="1">
@@ -33,9 +42,12 @@
                 maxLength="15" 
                 class="input input-border" 
                 row="2" 
-                (returnPress)="onReturnPress($event)" >
+                (returnPress)="onReturnPress($event)"
+                (textChange)="onTextChanged($event)" >
     </TextField>
     <Button class="btn btn-primary" 
-            text="Submit" 
+            text="Submit"
+            [isEnabled]="!this.isTextFieldEmpty"
+            (tap)="onSubmitTap($event)"
             row="3"></Button>>
 </GridLayout>
