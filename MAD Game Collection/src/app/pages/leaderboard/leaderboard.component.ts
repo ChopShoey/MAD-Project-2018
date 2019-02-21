@@ -3,6 +3,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
+import { GameIDService } from "~/app/services/gameID.service";
+import { GamesEnum } from "~/app/shared/gamesEnum";
 
 @Component({
     selector: "Leaderboard",
@@ -11,7 +13,7 @@ import * as app from "tns-core-modules/application";
 })
 export class LeaderboardComponent implements OnInit {
 
-    constructor() {
+    constructor(gameIDService: GameIDService) {
         // Use the component constructor to inject providers.
     }
 
