@@ -39,6 +39,39 @@
     padding: 10;
 }
 
+.leaderboard-title {
+    background-color: rgba(76, 157, 233, 0.7);
+    vertical-align: center;
+    text-align: center;
+    word-wrap: normal;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    height: 100%;
+}
+
+.leaderboard-name {
+    background-color: rgba(171, 187, 202, 0.7);
+    vertical-align: center;
+    text-align: center;
+    word-wrap: normal;
+    display: inline-block;
+    font-size: 14px;
+    height: 100%;
+}
+
+.leaderboard-score {
+    background-color: rgba(171, 187, 202, 0.7);
+    vertical-align: center;
+    text-align: center;
+    word-wrap: normal;
+    display: inline-block;
+    font-size: 14px;
+    height: 100%;
+}
+
+
+
 //Action bar
 ActionBar .action-bar-title {
     horizontal-align: center;
