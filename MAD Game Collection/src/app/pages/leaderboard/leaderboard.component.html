@@ -15,8 +15,41 @@
     </ActionItem>
     <Label class="action-bar-title" text="Leaderboard"></Label>
 </ActionBar>
-
-<GridLayout class="page page-content">
-    <Label class="page-icon fas" text="&#xf091;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
+<GridLayout class="leaderboard-base" columns="20,*,*,*,20" rows="10, auto, 10, *, *, *, *, *, *, *, *, *, *, *, 30">
+    <Button class="btn btn-primary" row="1" col="1" text="Angry Cats"></Button>
+    <Button class="btn btn-primary" row="1" col="2" text="Gladiator Combat"></Button>
+    <Button class="btn btn-primary" row="1" col="3" text="Sudoku"></Button>
+    <Label class="leaderboard-title" height="100%" row="3" col="1" colspan="2" text="Player Name"></Label>
+    <Label class="leaderboard-title" row="3" col="3" text="Score"></Label>
+    <Label class="leaderboard-name" row="4" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="4" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="5" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="5" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="6" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="6" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="7" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="7" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="8" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="8" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="9" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="9" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="10" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="10" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="11" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="11" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="12" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="12" col="3" text="1000"></Label>
+    <Label class="leaderboard-name" row="13" col="1" colspan="2" text="Lee Shuman"></Label>
+    <Label class="leaderboard-score" row="13" col="3" text="1000"></Label>
 </GridLayout>
+<!-- This approach doesn't work in the current version of NativeScript/Angular. Nested router outlets are in the @next 
+    version, but I'd prefere to stay on the stable release.
+<TabView id="leaderboardTabView" 
+            [(ngModel)]="tabSelectedIndex"
+            androidTabsPosition="top"
+            (selectedIndexChanged)="onSelectedIndexChanged($event)">
+                <page-router-outlet *tabItem="{title: 'Angry Cats'}" name="leaderboard/cats"></page-router-outlet>
+                <page-router-outlet *tabItem="{title: 'Gladiator Combat'}" name="arenaLeaderboard"></page-router-outlet>
+                <page-router-outlet *tabItem="{title: 'Sudoku'}" name="sudokuLeaderboard"></page-router-outlet>
+</TabView>
+-->

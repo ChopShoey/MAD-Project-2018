@@ -7,6 +7,7 @@ import { ArenaComponent } from "./pages/arena/arena.component";
 import { CatsComponent } from "./pages/cats/cats.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LeaderboardComponent } from "./pages/leaderboard/leaderboard.component";
+import { PageNotFoundComponent } from "./pages/pageNotFound/pageNotFound.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SudokuComponent } from "./pages/sudoku/sudoku.component";
 
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: "cats", component: CatsComponent },
     { path: "sudoku", component: SudokuComponent },
     { path: "leaderboard", component: LeaderboardComponent },
-    { path: "settings", component: SettingsComponent }
+    { path: "settings", component: SettingsComponent },
+    { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({

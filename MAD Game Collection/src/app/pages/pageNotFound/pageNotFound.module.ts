@@ -2,17 +2,17 @@
 
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-import { LeaderboardComponent } from "./leaderboard.component";
+import { PageNotFoundComponent } from "./pageNotFound.component";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule
     ],
     declarations: [
-        LeaderboardComponent
+        PageNotFoundComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class LeaderboardModule { }
+export class PageNotFoundModule { }

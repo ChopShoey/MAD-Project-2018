@@ -10,6 +10,7 @@ import { ArenaComponent } from "./pages/arena/arena.component";
 import { CatsComponent } from "./pages/cats/cats.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LeaderboardComponent } from "./pages/leaderboard/leaderboard.component";
+import { PageNotFoundComponent } from "./pages/pageNotFound/pageNotFound.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SudokuComponent } from "./pages/sudoku/sudoku.component";
 
@@ -18,9 +19,9 @@ import { SudokuComponent } from "./pages/sudoku/sudoku.component";
         AppComponent
     ],
     imports: [
-        AppRoutingModule,
         NativeScriptModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
@@ -29,7 +30,8 @@ import { SudokuComponent } from "./pages/sudoku/sudoku.component";
         CatsComponent,
         SudokuComponent,
         LeaderboardComponent,
-        SettingsComponent
+        SettingsComponent,
+        PageNotFoundComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
