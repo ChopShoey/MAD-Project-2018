@@ -46,28 +46,31 @@
     word-wrap: normal;
     display: inline-block;
     font-weight: bold;
-    font-size: 20px;
-    height: 100%;
+    font-size: 20;
 }
 
+$leaderboard-entry-color: rgba(171, 187, 202, 0.7);
+$leaderboard-entry-font-size: 20;
+$leaderboard-entry-height: $leaderboard-entry-font-size * 1.4;
+
 .leaderboard-name {
-    background-color: rgba(171, 187, 202, 0.7);
+    background-color: $leaderboard-entry-color;
     vertical-align: center;
     text-align: center;
     word-wrap: normal;
     display: inline-block;
-    font-size: 14px;
-    height: 100%;
+    font-size: $leaderboard-entry-font-size;
+    height: $leaderboard-entry-height;
 }
 
 .leaderboard-score {
-    background-color: rgba(171, 187, 202, 0.7);
+    background-color: $leaderboard-entry-color;
     vertical-align: center;
     text-align: center;
     word-wrap: normal;
     display: inline-block;
-    font-size: 14px;
-    height: 100%;
+    font-size: $leaderboard-entry-font-size;
+    height: $leaderboard-entry-height;
 }
 
 
