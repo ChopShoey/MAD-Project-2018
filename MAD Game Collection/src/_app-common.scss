@@ -28,7 +28,6 @@
         vertical-align: top;
         horizontal-align: center;
         color: $page-icon-color;
-        margin-top: 20%;
     }
 }
 
@@ -71,16 +70,16 @@
     border-width: 1;
 }
 
+$leaderboard-entry-color: rgba(171, 187, 202, 1);
+$leaderboard-entry-font-size: 20;
+$leaderboard-entry-height: $leaderboard-entry-font-size * 1.4;
+
 .leaderboard-base {
     border: solid;
     border-color: black;
     border-width: 1;
+    background-color: $leaderboard-entry-color;
 }
-
-$leaderboard-entry-color: rgba(171, 187, 202, 0.7);
-$leaderboard-entry-font-size: 20;
-$leaderboard-entry-height: $leaderboard-entry-font-size * 1.2;
-
 .leaderboard-name {
     background-color: $leaderboard-entry-color;
     vertical-align: center;
@@ -128,6 +127,7 @@ $sidedrawer-list-icon-size: 20;
             padding: 0;
             margin-bottom: $sidedrawer-header-image-offset-bottom;
             margin-top: $sidedrawer-header-image-offset-top;
+            horizontal-align: center;
         }
 
         .footnote {
@@ -140,7 +140,8 @@ $sidedrawer-list-icon-size: 20;
 
         .sidedrawer-player-name {
             color: $ab-color;
-            font-size: 24;
+            font-size: 20;
+            horizontal-align: center;
         }
     }
 
