@@ -15,18 +15,19 @@
     </ActionItem>
     <Label class="action-bar-title" text="Leaderboard"></Label>
 </ActionBar>
-<GridLayout class="leaderboard-base" columns="20,*,20" rows="10, auto, auto, *, 10">
-    <GridLayout class="leaderboard-base" col="1" row="1" columns="*,*,*" rows="auto" align-items="stretch">
+<GridLayout columns="20,*,20" rows="10, auto, auto, auto, *, 20" backgroundColor="aliceblue">
+    <Label class="page-icon fa" text="&#xf091;" col="1" row="1"></Label>
+    <GridLayout class="leaderboard-base" col="1" row="2" columns="*,*,*" rows="auto" align-items="stretch">
         <Button class="{{this.gameIndex === 0 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="0" text="Angry Cats" (tap)="onTapCats($event)"></Button>
         <Button class="{{this.gameIndex === 1 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="1" text="Gladiator Combat" (tap)="onTapArena($event)"></Button>
         <Button class="{{this.gameIndex === 2 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="2" text="Sudoku" (tap)="onTapSudoku($event)"></Button>
     </GridLayout>
-    <GridLayout class="leaderboard-base" col="1" row="2" columns="*,2*,*" rows="auto">
+    <GridLayout class="leaderboard-base" col="1" row="3" columns="*,2*,*" rows="auto">
         <Label class="leaderboard-title" row="0" col="0" text="Rank"></Label>
         <Label class="leaderboard-title" row="0" col="1" text="Player Name"></Label>
         <Label class="leaderboard-title" row="0" col="2" text="Score"></Label>
     </GridLayout>
-    <GridLayout class="leaderboard-base" col="1" row="3" columns="*,2*,*" rows="*,*,*,*,*,*,*,*,*,*">
+    <GridLayout class="leaderboard-base" col="1" row="4" columns="*,2*,*" rows="*,*,*,*,*,*,*,*,*,*">
         <Label class="leaderboard-name" row="0" col="0" text="1"></Label>
         <Label class="leaderboard-name" row="0" col="1" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].name : 'Unclaimed'}}"></Label>
         <Label class="leaderboard-score" row="0" col="2" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].score : '0'}}"></Label>
