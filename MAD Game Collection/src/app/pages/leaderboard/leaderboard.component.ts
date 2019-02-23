@@ -15,6 +15,7 @@ import { LeaderboardEntry } from "~/app/shared/leaderboardEntry";
     templateUrl: "./leaderboard.component.html"
 })
 export class LeaderboardComponent implements OnInit {
+    private gameIndex: GamesEnum = GamesEnum.ANGRY_CATS;
 
     constructor(private gameIDService: GameIDService, private leaderboardService: LeaderboardService) {
         // Use the component constructor to inject providers.
@@ -30,14 +31,17 @@ export class LeaderboardComponent implements OnInit {
     }
 
     onTapCats(): void {
+        this.gameIndex = GamesEnum.ANGRY_CATS;
         this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.ANGRY_CATS));
     }
 
     onTapArena(): void {
+        this.gameIndex = GamesEnum.GLADIATOR_COMBAT;
         this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
     }
 
     onTapSudoku(): void {
+        this.gameIndex = GamesEnum.SUDOKU;
         this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.SUDOKU));
     }
 }
