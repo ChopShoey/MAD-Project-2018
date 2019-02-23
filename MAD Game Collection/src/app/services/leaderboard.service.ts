@@ -3,30 +3,38 @@
 // concerned with how to display the leaderboard elements.
 
 import { Injectable } from "@angular/core";
-import { getJSON } from "tns-core-modules/http";
+import * as fetchModule from "fetch";
+import * as httpModule from "tns-core-modules/http";
+import { LeaderboardEntry } from "../shared/leaderboardEntry";
 
 @Injectable({
     providedIn: "root"
 })
 export class LeaderboardService {
-    private serverUrl;
 
+    leaderboardEntries: Array<LeaderboardEntry>;
     constructor() {
         // Used for injecting other modules, if necessary
     }
 
-    getTopTen(gameGuid: string) {
-        this.serverUrl = "https://game-collection-leaderboard.glitch.me/api/v1/score";
-        // Need to add body elements to the request before I can actually request scores.
-        getJSON(this.serverUrl).then((r: any) => {
-            r.scores.forEach((score) => {
-                const scoreValue: string = score.value;
-                // Do something with score list
+    requestTopTen(gameGuid: string): void {
+        this.leaderboardEntries = [];
+        const serverURL = "https://game-collection-leaderboard.glitch.me/api/v1/score?game_id=" + gameGuid.toString();
+        console.log(serverURL);
+        httpModule.getJSON({
+            url: "https://game-collection-leaderboard.glitch.me/api/v1/score?game_id=" + gameGuid.toString(),
+            method: "GET"
+        }).then((results: any) => {
+            // console.log(results);
+            results.forEach((result) => {
+                const leaderboardEntry: LeaderboardEntry = {
+                    name: result.name,
+                    score: result.score
+                };
+                this.leaderboardEntries.push(leaderboardEntry);
             });
         }, (e) => {
             console.log(e);
         });
-
-        return "NotSetUp";
     }
 }
