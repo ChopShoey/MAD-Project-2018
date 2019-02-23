@@ -49,9 +49,37 @@
     font-size: 20;
 }
 
+.leaderboard-btn-inactive {
+    background-color: rgba(159, 201, 241, 0.925);
+    
+}
+
+.leaderboard-btn-active {
+    background-color: rgba(30, 80, 128, 0.7);
+}
+
+.leaderboard-btn {
+    height: 70;
+    width: 100%;
+    border: none;
+    color: white;
+    text-align: center;
+    word-wrap: normal;
+    font-size: 18;
+    border: solid;
+    border-color: black;
+    border-width: 1;
+}
+
+.leaderboard-base {
+    border: solid;
+    border-color: black;
+    border-width: 1;
+}
+
 $leaderboard-entry-color: rgba(171, 187, 202, 0.7);
 $leaderboard-entry-font-size: 20;
-$leaderboard-entry-height: $leaderboard-entry-font-size * 1.4;
+$leaderboard-entry-height: $leaderboard-entry-font-size * 1.2;
 
 .leaderboard-name {
     background-color: $leaderboard-entry-color;

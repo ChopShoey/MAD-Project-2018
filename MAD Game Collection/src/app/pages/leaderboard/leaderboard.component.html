@@ -15,43 +15,49 @@
     </ActionItem>
     <Label class="action-bar-title" text="Leaderboard"></Label>
 </ActionBar>
-<GridLayout class="leaderboard-base" columns="20,*,3*,*,20" rows="10, auto, 10, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto">
-    <Button class="btn btn-primary" row="1" col="1" text="Angry Cats" (tap)="onTapCats($event)"></Button>
-    <Button class="btn btn-primary" row="1" col="2" text="Gladiator Combat" (tap)="onTapArena($event)"></Button>
-    <Button class="btn btn-primary" row="1" col="3" text="Sudoku" (tap)="onTapSudoku($event)"></Button>
-    <Label class="leaderboard-title" row="3" col="1" text="Rank"></Label>
-    <Label class="leaderboard-title" row="3" col="2" text="Player Name"></Label>
-    <Label class="leaderboard-title" row="3" col="3" text="Score"></Label>
-    <Label class="leaderboard-name" row="4" col="1" text="1"></Label>
-    <Label class="leaderboard-name" row="4" col="2" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="4" col="3" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="5" col="1" text="2"></Label>
-    <Label class="leaderboard-name" row="5" col="2" text="{{this.leaderboardService.leaderboardEntries[1] ? this.leaderboardService.leaderboardEntries[1].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="5" col="3" text="{{this.leaderboardService.leaderboardEntries[1] ? this.leaderboardService.leaderboardEntries[1].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="6" col="1" text="3"></Label>
-    <Label class="leaderboard-name" row="6" col="2" text="{{this.leaderboardService.leaderboardEntries[2] ? this.leaderboardService.leaderboardEntries[2].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="6" col="3" text="{{this.leaderboardService.leaderboardEntries[2] ? this.leaderboardService.leaderboardEntries[2].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="7" col="1" text="4"></Label>
-    <Label class="leaderboard-name" row="7" col="2" text="{{this.leaderboardService.leaderboardEntries[3] ? this.leaderboardService.leaderboardEntries[3].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="7" col="3" text="{{this.leaderboardService.leaderboardEntries[3] ? this.leaderboardService.leaderboardEntries[3].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="8" col="1" text="5"></Label>
-    <Label class="leaderboard-name" row="8" col="2" text="{{this.leaderboardService.leaderboardEntries[4] ? this.leaderboardService.leaderboardEntries[4].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="8" col="3" text="{{this.leaderboardService.leaderboardEntries[4] ? this.leaderboardService.leaderboardEntries[4].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="9" col="1" text="6"></Label>
-    <Label class="leaderboard-name" row="9" col="2" text="{{this.leaderboardService.leaderboardEntries[5] ? this.leaderboardService.leaderboardEntries[5].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="9" col="3" text="{{this.leaderboardService.leaderboardEntries[5] ? this.leaderboardService.leaderboardEntries[5].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="10" col="1" text="7"></Label>
-    <Label class="leaderboard-name" row="10" col="2" text="{{this.leaderboardService.leaderboardEntries[6] ? this.leaderboardService.leaderboardEntries[6].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="10" col="3" text="{{this.leaderboardService.leaderboardEntries[6] ? this.leaderboardService.leaderboardEntries[6].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="11" col="1" text="8"></Label>
-    <Label class="leaderboard-name" row="11" col="2" text="{{this.leaderboardService.leaderboardEntries[7] ? this.leaderboardService.leaderboardEntries[7].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="11" col="3" text="{{this.leaderboardService.leaderboardEntries[7] ? this.leaderboardService.leaderboardEntries[7].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="12" col="1" text="9"></Label>
-    <Label class="leaderboard-name" row="12" col="2" text="{{this.leaderboardService.leaderboardEntries[8] ? this.leaderboardService.leaderboardEntries[8].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="12" col="3" text="{{this.leaderboardService.leaderboardEntries[8] ? this.leaderboardService.leaderboardEntries[8].score : '0'}}"></Label>
-    <Label class="leaderboard-name" row="13" col="1" text="10"></Label>
-    <Label class="leaderboard-name" row="13" col="2" text="{{this.leaderboardService.leaderboardEntries[9] ? this.leaderboardService.leaderboardEntries[9].name : 'Unclaimed'}}"></Label>
-    <Label class="leaderboard-score" row="13" col="3" text="{{this.leaderboardService.leaderboardEntries[9] ? this.leaderboardService.leaderboardEntries[9].score : '0'}}"></Label>
+<GridLayout class="leaderboard-base" columns="20,*,20" rows="10, auto, auto, *, 10">
+    <GridLayout class="leaderboard-base" col="1" row="1" columns="*,*,*" rows="auto" align-items="stretch">
+        <Button class="{{this.gameIndex === 0 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="0" text="Angry Cats" (tap)="onTapCats($event)"></Button>
+        <Button class="{{this.gameIndex === 1 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="1" text="Gladiator Combat" (tap)="onTapArena($event)"></Button>
+        <Button class="{{this.gameIndex === 2 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="2" text="Sudoku" (tap)="onTapSudoku($event)"></Button>
+    </GridLayout>
+    <GridLayout class="leaderboard-base" col="1" row="2" columns="*,2*,*" rows="auto">
+        <Label class="leaderboard-title" row="0" col="0" text="Rank"></Label>
+        <Label class="leaderboard-title" row="0" col="1" text="Player Name"></Label>
+        <Label class="leaderboard-title" row="0" col="2" text="Score"></Label>
+    </GridLayout>
+    <GridLayout class="leaderboard-base" col="1" row="3" columns="*,2*,*" rows="*,*,*,*,*,*,*,*,*,*">
+        <Label class="leaderboard-name" row="0" col="0" text="1"></Label>
+        <Label class="leaderboard-name" row="0" col="1" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="0" col="2" text="{{this.leaderboardService.leaderboardEntries[0] ? this.leaderboardService.leaderboardEntries[0].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="1" col="0" text="2"></Label>
+        <Label class="leaderboard-name" row="1" col="1" text="{{this.leaderboardService.leaderboardEntries[1] ? this.leaderboardService.leaderboardEntries[1].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="1" col="2" text="{{this.leaderboardService.leaderboardEntries[1] ? this.leaderboardService.leaderboardEntries[1].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="2" col="0" text="3"></Label>
+        <Label class="leaderboard-name" row="2" col="1" text="{{this.leaderboardService.leaderboardEntries[2] ? this.leaderboardService.leaderboardEntries[2].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="2" col="2" text="{{this.leaderboardService.leaderboardEntries[2] ? this.leaderboardService.leaderboardEntries[2].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="3" col="0" text="4"></Label>
+        <Label class="leaderboard-name" row="3" col="1" text="{{this.leaderboardService.leaderboardEntries[3] ? this.leaderboardService.leaderboardEntries[3].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="3" col="2" text="{{this.leaderboardService.leaderboardEntries[3] ? this.leaderboardService.leaderboardEntries[3].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="4" col="0" text="5"></Label>
+        <Label class="leaderboard-name" row="4" col="1" text="{{this.leaderboardService.leaderboardEntries[4] ? this.leaderboardService.leaderboardEntries[4].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="4" col="2" text="{{this.leaderboardService.leaderboardEntries[4] ? this.leaderboardService.leaderboardEntries[4].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="5" col="0" text="6"></Label>
+        <Label class="leaderboard-name" row="5" col="1" text="{{this.leaderboardService.leaderboardEntries[5] ? this.leaderboardService.leaderboardEntries[5].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="5" col="2" text="{{this.leaderboardService.leaderboardEntries[5] ? this.leaderboardService.leaderboardEntries[5].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="6" col="0" text="7"></Label>
+        <Label class="leaderboard-name" row="6" col="1" text="{{this.leaderboardService.leaderboardEntries[6] ? this.leaderboardService.leaderboardEntries[6].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="6" col="2" text="{{this.leaderboardService.leaderboardEntries[6] ? this.leaderboardService.leaderboardEntries[6].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="7" col="0" text="8"></Label>
+        <Label class="leaderboard-name" row="7" col="1" text="{{this.leaderboardService.leaderboardEntries[7] ? this.leaderboardService.leaderboardEntries[7].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="7" col="2" text="{{this.leaderboardService.leaderboardEntries[7] ? this.leaderboardService.leaderboardEntries[7].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="8" col="0" text="9"></Label>
+        <Label class="leaderboard-name" row="8" col="1" text="{{this.leaderboardService.leaderboardEntries[8] ? this.leaderboardService.leaderboardEntries[8].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="8" col="2" text="{{this.leaderboardService.leaderboardEntries[8] ? this.leaderboardService.leaderboardEntries[8].score : '0'}}"></Label>
+        <Label class="leaderboard-name" row="9" col="0" text="10"></Label>
+        <Label class="leaderboard-name" row="9" col="1" text="{{this.leaderboardService.leaderboardEntries[9] ? this.leaderboardService.leaderboardEntries[9].name : 'Unclaimed'}}"></Label>
+        <Label class="leaderboard-score" row="9" col="2" text="{{this.leaderboardService.leaderboardEntries[9] ? this.leaderboardService.leaderboardEntries[9].score : '0'}}"></Label>
+    </GridLayout>
 </GridLayout>
 <!-- This approach doesn't work in the current version of NativeScript/Angular. Nested router outlets are in the @next 
     version, but I'd prefere to stay on the stable release.
