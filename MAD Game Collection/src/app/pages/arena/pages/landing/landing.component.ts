@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { EventData } from "tns-core-modules/ui/page/page";
 
 @Component({
   selector: "ns-landing",
@@ -7,7 +9,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LandingComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     // May be useful for importing services for loading.
   }
 
@@ -15,4 +17,7 @@ export class LandingComponent implements OnInit {
     // Start background loading??
   }
 
+  onSubmitTap(eventData: EventData): void {
+    this.router.navigateByUrl("arena/arena");
+  }
 }
