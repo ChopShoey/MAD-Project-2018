@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.playerService.isPlayerNameSet() ? this._activatedUrl = "/arena" : this._activatedUrl = "/settings";
+        this.playerService.isPlayerNameSet() ? this._activatedUrl = "/arena/landing" : this._activatedUrl = "/settings";
         this._sideDrawerTransition = new SlideInOnTopTransition();
         this.router.navigateByUrl(this._activatedUrl);
 

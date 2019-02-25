@@ -7,7 +7,7 @@ import { EventData } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field/text-field";
 import { GameIDService } from "~/app/services/gameID.service";
 import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
-import { GamesEnum } from "../../shared/gamesEnum";
+import { GamesEnum } from "../../../../shared/gamesEnum";
 
 @Component({
     selector: "Arena",
