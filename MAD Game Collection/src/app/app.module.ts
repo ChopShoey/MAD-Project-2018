@@ -6,6 +6,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { ArenaRoutingModule } from "./pages/arena/arena-routing.module";
 import { ArenaComponent } from "./pages/arena/arena.component";
 import { CatsComponent } from "./pages/cats/cats.component";
 import { HomeComponent } from "./pages/home/home.component";
@@ -21,6 +22,7 @@ import { SudokuComponent } from "./pages/sudoku/sudoku.component";
     imports: [
         NativeScriptModule,
         NativeScriptUISideDrawerModule,
+        ArenaRoutingModule,
         AppRoutingModule
     ],
     declarations: [
