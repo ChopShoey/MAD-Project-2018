@@ -1,1 +1,39 @@
-<Button text="landing works!" class="btn btn-primary"></Button>
+<!-- Author/s: Lee Shuman -->
+
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton   ios:visibility="collapsed" 
+                        icon="res://menu" 
+                        (tap)="onDrawerButtonTap()">
+    </NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" 
+                android:visibility="collapsed" 
+                (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Welcome"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content" columns="*" rows="auto,auto,auto,auto">
+    <Label  text="&#xf6d9;"
+            class="page-icon fas" 
+            row="0">
+    </Label>
+    <Label  class="info-text" 
+            text="Welcome to the arena!" 
+            width=100%
+            row="1">
+    </Label>
+    <Button class="btn btn-primary" 
+            text="Enter the Arena"
+            (tap)="onSubmitTap($event)"
+            row="3"></Button>>
+</GridLayout>
