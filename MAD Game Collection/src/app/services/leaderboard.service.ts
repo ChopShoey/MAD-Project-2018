@@ -3,7 +3,6 @@
 // concerned with how to display the leaderboard elements.
 
 import { Injectable } from "@angular/core";
-import * as fetchModule from "fetch";
 import * as httpModule from "tns-core-modules/http";
 import { LeaderboardEntry } from "../shared/leaderboardEntry";
 
@@ -20,12 +19,10 @@ export class LeaderboardService {
     requestTopTen(gameGuid: string): void {
         this.leaderboardEntries = [];
         const serverURL = "https://game-collection-leaderboard.glitch.me/api/v1/score?game_id=" + gameGuid.toString();
-        console.log(serverURL);
         httpModule.getJSON({
-            url: "https://game-collection-leaderboard.glitch.me/api/v1/score?game_id=" + gameGuid.toString(),
+            url: serverURL,
             method: "GET"
         }).then((results: any) => {
-            // console.log(results);
             results.forEach((result) => {
                 const leaderboardEntry: LeaderboardEntry = {
                     name: result.name,

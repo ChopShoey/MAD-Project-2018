@@ -28,6 +28,7 @@
         vertical-align: top;
         horizontal-align: center;
         color: $page-icon-color;
+        margin-top: 20%;
     }
 }
 
@@ -36,6 +37,13 @@
     font-size: 20;
     text-align: center;
     padding: 10;
+}
+
+.leaderboard-icon {
+    color: $leaderboard-icon-color;
+    font-size: 72;
+    vertical-align: top;
+    horizontal-align: center;
 }
 
 .leaderboard-title {
@@ -71,7 +79,7 @@
 }
 
 $leaderboard-entry-color: rgba(171, 187, 202, 1);
-$leaderboard-entry-font-size: 20;
+$leaderboard-entry-font-size: 17;
 $leaderboard-entry-height: $leaderboard-entry-font-size * 1.4;
 
 .leaderboard-base {
