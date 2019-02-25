@@ -4,6 +4,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 import { EventData } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field";
 import { PlayerService } from "~/app/services/player.service";
@@ -50,10 +51,20 @@ export class SettingsComponent {
     // Default behavior is to go to the home screen if the player name is successfully set.
     submitPlayerName(playerName: string) {
         try {
-            this.playerService.setPlayerName(playerName);
-            this.router.navigateByUrl("/home");
+            this.playerService.postPlayerName(playerName, this.onSuccessfulPost, this);
+            // this.router.navigateByUrl("/home");
         } catch (error) {
             console.log(`Caught ${error}`);
+        }
+    }
+
+    onSuccessfulPost(settingsComponent: SettingsComponent, success: boolean): void {
+        if (success) {
+            settingsComponent.router.navigateByUrl("/home");
+        } else {
+            dialogs.alert("Name could not be updated").then(() => {
+                console.log("Dialog closed");
+            });
         }
     }
 }

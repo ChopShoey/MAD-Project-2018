@@ -5,7 +5,9 @@
 import { Injectable } from "@angular/core";
 import * as applicationSettingsModule from "application-settings";
 import { Guid } from "guid-typescript";
+import * as httpModule from "http";
 import * as trace from "tns-core-modules/trace";
+import { SettingsComponent } from "../pages/settings/settings.component";
 import { PlayerInfo } from "../shared/playerInfo";
 
 const playerNameSettingKey: string = "playerName";
@@ -37,7 +39,7 @@ export class PlayerService {
                     this.playerID,
                     this);
             } catch (error) {
-                console.log(`Caught: ${error}`);
+                trace.error(`Caught: ${error}`);
             }
         }
     }
@@ -54,10 +56,39 @@ export class PlayerService {
             try {
                 this.playerInfo = new PlayerInfo(playerName, this.playerID, this);
             } catch (error) {
-                console.log(`Caught: ${error}`);
+                trace.error(`Caught: ${error}`);
             }
         } else {
             trace.error("Tried to set a 'Falsey' player name");
         }
+    }
+
+    postPlayerName(playerName: string,
+                   callback: (settingsComponent: SettingsComponent, success: boolean) => void,
+                   inputSettingsComponent: SettingsComponent): void {
+        const serverURL = "https://game-collection-leaderboard.glitch.me/api/v1/player?player_id=" +
+            this.playerID.toString() + "&player_name='" + encodeURIComponent(playerName) + "'";
+
+        httpModule.request({
+            url: serverURL,
+            method: "POST"
+        }).then((response: httpModule.HttpResponse) => {
+            const jsonResponse = response.content.toJSON();
+            if (jsonResponse.message === "An error occurred") {
+                trace.error("That didn't work, stay here");
+                callback(inputSettingsComponent, false);
+            } else {
+                try {
+                    this.setPlayerName(playerName);
+                    callback(inputSettingsComponent, true);
+                } catch (error) {
+                    alert("Player name could not be set, please try again");
+                    trace.error("Failed to set the player name");
+                }
+            }
+        }, (e) => {
+            trace.error(e);
+        });
+
     }
 }
