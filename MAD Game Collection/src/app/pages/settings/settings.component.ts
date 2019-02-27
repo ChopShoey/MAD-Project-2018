@@ -34,7 +34,7 @@ export class SettingsComponent {
             this.nameTextField = <TextField> eventData.object;
         }
         // Only set the isTextFieldEmpty field to true if it has non-empty/non-whitespace characters
-        this.nameTextField.text.trim() ? this.isTextFieldEmpty = false : this.isTextFieldEmpty = true;
+        this.nameTextField.text.replace(/\s/g, "") ? this.isTextFieldEmpty = false : this.isTextFieldEmpty = true;
     }
 
     // Allows submission through the soft keyboard "done" key
@@ -51,7 +51,7 @@ export class SettingsComponent {
     // Default behavior is to go to the home screen if the player name is successfully set.
     submitPlayerName(playerName: string) {
         try {
-            this.playerService.postPlayerName(playerName, this.onSuccessfulPost, this);
+            this.playerService.postPlayerName(playerName.trim(), this.onSuccessfulPost, this);
             // this.router.navigateByUrl("/home");
         } catch (error) {
             console.log(`Caught ${error}`);
