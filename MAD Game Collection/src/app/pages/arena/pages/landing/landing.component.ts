@@ -5,6 +5,7 @@ import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { EventData } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field/text-field";
+import { GladiatorService } from "../../services/gladiator.service";
 
 @Component({
   selector: "ns-landing",
@@ -22,12 +23,16 @@ export class ArenaLandingComponent implements OnInit {
     return this._gladiatorName;
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private gladiatorService: GladiatorService) {
     // May be useful for importing services for loading.
   }
 
   ngOnInit() {
-    // Start background loading??
+    console.log(this.gladiatorService.gladiator.name);
+    if (this.gladiatorService.gladiator.name !== null) {
+      this.router.navigateByUrl("arena/arena");
+      console.log(`Gladiator name was ${this.gladiatorService.gladiator.name}`);
+    }
   }
 
   onDrawerButtonTap(): void {
@@ -35,8 +40,8 @@ export class ArenaLandingComponent implements OnInit {
     sideDrawer.showDrawer();
   }
 
-  onSubmitTap(eventData: EventData): void {
-    this.submitGladiatorName();
+  onSubmit(eventData: EventData): void {
+    this.submitGladiatorName(this.nameTextField.text);
   }
 
   onTextChanged(eventData: EventData): void {
@@ -47,11 +52,12 @@ export class ArenaLandingComponent implements OnInit {
     }
   }
 
-  onReturnPress(eventData: EventData): void {
-    this.submitGladiatorName();
-  }
-
-  submitGladiatorName(): void {
-    this.router.navigateByUrl("arena/arena");
+  submitGladiatorName(gladiatorName: string): void {
+    try {
+      this.gladiatorService.setGladiatorName(gladiatorName);
+      this.router.navigateByUrl("arena/arena");
+    } catch (error) {
+      console.log(`Caught ${error}, stay on page`);
+    }
   }
 }
