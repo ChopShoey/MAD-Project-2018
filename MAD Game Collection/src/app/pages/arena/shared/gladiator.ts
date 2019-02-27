@@ -13,6 +13,6 @@ export class Gladiator {
 
     // Imports the playerService so that the GUID can be validated before being set as PlayerInfo
     constructor(name: string) {
-        name ? this.name = name : trace.error("Falsey player name");
+        name === null || name.trim() !== "" ? this.name = name : trace.error("Name cannot be empty");
     }
 }
