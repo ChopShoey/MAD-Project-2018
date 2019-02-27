@@ -5,11 +5,11 @@ import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { ArenaComponent } from "./pages/arena/arena.component";
-import { LandingComponent } from "./pages/landing/landing.component";
+import { ArenaLandingComponent } from "./pages/landing/landing.component";
 
 const routes: Routes = [
     { path: "arena/arena", component: ArenaComponent },
-    { path: "arena/landing", component: LandingComponent}
+    { path: "arena/landing", component: ArenaLandingComponent}
 ];
 
 @NgModule({

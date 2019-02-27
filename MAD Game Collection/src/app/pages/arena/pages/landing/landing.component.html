@@ -32,8 +32,19 @@
             width=100%
             row="1">
     </Label>
+    <TextField  hint="Enter a name" 
+                secure="false" 
+                returnKeyType="done"
+                autocorrect="false"
+                maxLength="19"
+                class="input input-border" 
+                row="2" 
+                (returnPress)="onReturnPress($event)"
+                (textChange)="onTextChanged($event)">
+    </TextField>
     <Button class="btn btn-primary" 
             text="Enter the Arena"
+            [isEnabled]="!isTextFieldEmpty"
             (tap)="onSubmitTap($event)"
             row="3"></Button>>
 </GridLayout>
