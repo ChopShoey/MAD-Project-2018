@@ -4,8 +4,6 @@
 
 import { Injectable } from "@angular/core";
 import * as applicationSettingsModule from "application-settings";
-import { Guid } from "guid-typescript";
-import * as httpModule from "http";
 import * as trace from "tns-core-modules/trace";
 import { Gladiator } from "../shared/gladiator";
 
