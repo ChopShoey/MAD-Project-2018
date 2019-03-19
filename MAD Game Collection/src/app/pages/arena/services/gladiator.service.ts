@@ -5,10 +5,11 @@
 import { Injectable } from "@angular/core";
 import * as applicationSettingsModule from "application-settings";
 import * as trace from "tns-core-modules/trace";
+import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { Gladiator } from "../shared/gladiator";
+import { GladiatorStatistics } from "../shared/gladiatorStatistics";
 
 const gladiatorNameKey: string = "gladiatorName";
-const gladiatorStrengthKey: string = "gladiatorStrength";
 
 @Injectable({
     providedIn: "root"
@@ -19,14 +20,49 @@ export class GladiatorService {
     constructor() {
         // See if a gladiator name has been stored in settings
         if (applicationSettingsModule.hasKey(gladiatorNameKey)) {
-                // Load up the gladiator properties from settings
-                const name = applicationSettingsModule.getString(gladiatorNameKey);
-                // const strength = applicationSettingsModule.getNumber(gladiatorStrengthKey);
-                trace.write(`name constant is ${name}`, trace.categories.Debug, trace.messageType.log);
-                this.gladiator = new Gladiator(name);
-            } else {
-                this.gladiator = new Gladiator(null);
-            }
+            // Load up the gladiator properties from settings
+            const name = applicationSettingsModule.getString(gladiatorNameKey);
+            // const strength = applicationSettingsModule.getNumber(gladiatorStrengthKey);
+            console.log("Should be tracing");
+            trace.write(`name constant is ${name}`, trace.categories.Debug, trace.messageType.log);
+            this.gladiator = new Gladiator(name);
+
+            // Load stats from settings
+            trace.write(typeof(this.gladiator.gladiatorStatistics.strength),
+                trace.categories.Debug, trace.messageType.info);
+
+            const newStats = new GladiatorStatistics();
+            newStats.strength = applicationSettingsModule.getNumber(
+                GladiatorStatistics.strengthKey, GladiatorStatistics.baseStatValue);
+            newStats.agility = applicationSettingsModule.getNumber(
+                GladiatorStatistics.agilityKey, GladiatorStatistics.baseStatValue);
+            newStats.defense = applicationSettingsModule.getNumber(
+                GladiatorStatistics.defenseKey, GladiatorStatistics.baseStatValue);
+            newStats.vitality = applicationSettingsModule.getNumber(
+                GladiatorStatistics.vitalityKey, GladiatorStatistics.baseStatValue);
+            newStats.endurance = applicationSettingsModule.getNumber(
+                GladiatorStatistics.enduranceKey, GladiatorStatistics.baseStatValue);
+            this.gladiator.gladiatorStatistics = newStats;
+
+            trace.write(`Created ${this.gladiator.name} with stats:
+\tStrength: ${this.gladiator.gladiatorStatistics.strength}
+\tAgility: ${this.gladiator.gladiatorStatistics.agility}
+\tDefense: ${this.gladiator.gladiatorStatistics.defense}
+\tVitality: ${this.gladiator.gladiatorStatistics.vitality}
+\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}`,
+traceCategories.Debug,
+traceMessageType.info);
+        } else {
+            this.gladiator = new Gladiator(null);
+            trace.write(`Created a new gladiator with no name with stats:
+\tStrength: ${this.gladiator.gladiatorStatistics.strength}
+\tAgility: ${this.gladiator.gladiatorStatistics.agility}
+\tDefense: ${this.gladiator.gladiatorStatistics.defense}
+\tVitality: ${this.gladiator.gladiatorStatistics.vitality}
+\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}`,
+traceCategories.Debug,
+traceMessageType.info);
+        }
         console.log(`Initialized gladiator as ${this.gladiator.name}`);
     }
 
