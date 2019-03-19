@@ -4,7 +4,7 @@
     <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
         <StackLayout row="0" class="sidedrawer-header">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
-            <Label class="sidedrawer-player-name" [text]="this.playerService.playerInfo.name"></Label>
+            <Label class="sidedrawer-player-name" [text]="this.playerService.playerInfo?.name"></Label>
             <!--<Label class="footnote" text="username@mail.com"></Label>-->
         </StackLayout>
 
@@ -15,7 +15,7 @@
                     <Label col="1" text="Home" class="p-r-10"></Label>
                 </GridLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/arena')" (tap)="onNavItemTap('/arena')">
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/arena')" (tap)="onNavItemTap('/arena/landing')">
                     <Label col="0" text="&#xf6d9;" class="fas"></Label>
                     <Label col="1" text="Gladiator Arena" class="p-r-10"></Label>
                 </GridLayout>
