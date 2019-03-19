@@ -4,7 +4,7 @@
     <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
         <StackLayout row="0" class="sidedrawer-header">
             <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
-            <Label class="sidedrawer-player-name" [text]="this.playerService.playerInfo.name"></Label>
+            <Label class="sidedrawer-player-name" [text]="this.playerService.playerInfo?.name"></Label>
             <!--<Label class="footnote" text="username@mail.com"></Label>-->
         </StackLayout>
 
