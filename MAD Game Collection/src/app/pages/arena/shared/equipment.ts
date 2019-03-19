@@ -2,10 +2,12 @@
 // Defines gladiator properties/functions
 
 import * as trace from "tns-core-modules/trace";
+import { EquipmentSlotEnum } from "./equipmentSlotEnum";
 
 export class Equipment {
 
-     constructor(name: string) {
+    slot: EquipmentSlotEnum;
+    constructor(name: string) {
         // placeholder
     }
 }
