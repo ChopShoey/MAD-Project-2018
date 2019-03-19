@@ -6,8 +6,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
-import { addCategories, addWriter, categories, clearWriters, disable,
-    enable, isCategorySet, isEnabled, setCategories, write } from "tns-core-modules/trace";
+import { addCategories, addWriter, categories, clearWriters, enable } from "tns-core-modules/trace";
 import { PlayerService } from "./services/player.service";
 import { TimestampConsoleWriter } from "./shared/timestampConsoleWriter";
 
@@ -23,7 +22,7 @@ export class AppComponent implements OnInit {
     constructor(private router: Router,
                 private routerExtensions: RouterExtensions,
                 private playerService: PlayerService) {
-        setCategories(categories.Debug);
+        addCategories(`${categories.Debug}, ${categories.Error}`);
         enable();
         clearWriters();
         addWriter(new TimestampConsoleWriter());

@@ -1,58 +1,40 @@
 // Copied and modified from https://docs.nativescript.org/ns-framework-modules/trace
 
 import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
-import { messageType, TraceWriter } from "tns-core-modules/trace";
+import * as trace from "tns-core-modules/trace";
 
 const array = new ObservableArray();
 
-export class TimestampConsoleWriter implements TraceWriter {
+export class TimestampConsoleWriter implements trace.TraceWriter {
     constructor() {
         // Not currently needed
     }
 
     write(message, category, type) {
+        // console.log(`Writing ${message} to the log`);
         if (!console) {
             return;
         }
 
-        const msgType = isUndefined(type) ? messageType.log : type;
-
+        const msgType = isUndefined(type) ? trace.messageType.log : type;
+        let msgTypeString: string
         switch (msgType) {
-            case messageType.log:
-                array.push({
-                    messageType: "log",
-                    date: new Date().toISOString(),
-                    message,
-                    category
-                });
+            case trace.messageType.log:
+                msgTypeString = "LOG";
                 break;
-            case messageType.info:
-                array.push({
-                    messageType: "info",
-                    date: new Date().toISOString(),
-                    message,
-                    category
-                });
+            case trace.messageType.info:
+                msgTypeString = "INFO";
                 break;
-            case messageType.warn:
-                array.push({
-                    messageType: "warning",
-                    date: new Date().toISOString(),
-                    message,
-                    category
-                });
+            case trace.messageType.warn:
+                msgTypeString = "WARN";
                 break;
-            case messageType.error:
-                array.push({
-                    messageType: "error",
-                    date: new Date().toISOString(),
-                    message,
-                    category
-                });
+            case trace.messageType.error:
+                msgTypeString = "ERROR";
                 break;
             default:
                 break;
         }
+        console.log(`${category} ${msgTypeString} ${new Date().toISOString()}: ${message}`);
     }
 }
 
