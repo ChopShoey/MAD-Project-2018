@@ -1,20 +1,27 @@
-<ActionBar class="action-bar">
-    <!-- 
-    Use the NavigationButton as a side-drawer button in Android
-    because ActionItems are shown on the right side of the ActionBar
-    -->
-    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
-    <!-- 
-    Use the ActionItem for IOS with position set to left. Using the
-    NavigationButton as a side-drawer button in iOS is not possible,
-    because its function is to always navigate back in the application.
-    -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
-    </ActionItem>
-    <Label class="action-bar-title" text="Angry Cats"></Label>
-</ActionBar>
+<Page xmlns="http://www.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+	<ActionBar class="action-bar">
+		<!-- 
+		Use the NavigationButton as a side-drawer button in Android
+		because ActionItems are shown on the right side of the ActionBar
+		-->
+		<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+		<!-- 
+		Use the ActionItem for IOS with position set to left. Using the
+		NavigationButton as a side-drawer button in iOS is not possible,
+		because its function is to always navigate back in the application.
+		-->
+		<ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+		</ActionItem>
+		<Label class="action-bar-title" text="Angry Cats"></Label>
+	</ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf005;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+    <GridLayout>
+		<Label text="
+					Angry Cats is a puzzle game. Poke the cat to make
+					it jump and hit all of the enemies!
+					
+					Disclaimer: The Play button is not hooked up yet
+					so the game is inaccesssible for now." textWrap="true"></Label>
+		<Button class="btn btn-primary btn-active" id="button" text="Let's Play!" (tap)="onTap($event)" style="width: 500px; height: 250px;"></Button>
+    </GridLayout>
+</Page>
