@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman, Paul Christy, Diane Truong
+// Authors: Lee Shuman and Diane Truong
 
 import { Component, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";

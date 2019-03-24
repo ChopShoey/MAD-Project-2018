@@ -1,4 +1,4 @@
-<!-- Author/s: Lee Shuman, Paul Christy, Diane Truong -->
+<!-- Authors: Lee Shuman and Diane Truong -->
 
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
     <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
@@ -23,11 +23,6 @@
                 <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/cats')" (tap)="onNavItemTap('/cats')">
                     <Label col="0" text="&#xf005;" class="fa"></Label>
                     <Label col="1" text="Angry Cats" class="p-r-10"></Label>
-                </GridLayout>
-
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/sudoku')" (tap)="onNavItemTap('/sudoku')">
-                    <Label col="0" text="&#xf005;" class="fa"></Label>
-                    <Label col="1" text="Sudoku" class="p-r-10"></Label>
                 </GridLayout>
 
                 <StackLayout class="hr-light"></StackLayout>
