@@ -1,4 +1,4 @@
-// Authors: Lee Shuman and Diane Truong
+// Author: Lee Shuman
 
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
@@ -8,8 +8,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ArenaAppModule } from "./pages/arena/arena-app.module";
 import { ArenaRoutingModule } from "./pages/arena/arena-routing.module";
-import { CatsComponent } from "./pages/cats/cats.component";
-import { HomeComponent } from "./pages/home/home.component";
 import { LeaderboardComponent } from "./pages/leaderboard/leaderboard.component";
 import { PageNotFoundComponent } from "./pages/pageNotFound/pageNotFound.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
@@ -27,8 +25,6 @@ import { SettingsComponent } from "./pages/settings/settings.component";
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
-        CatsComponent,
         LeaderboardComponent,
         SettingsComponent,
         PageNotFoundComponent
