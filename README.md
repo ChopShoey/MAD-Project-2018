@@ -1,4 +1,4 @@
-# MAD Game Collection
+# MAD Arena Combat
 
 ## Purpose
 
@@ -6,14 +6,8 @@ This game collection is developed as a project for the spring semester offering 
 
 ## Description
 
-This application will provide two basic games that utilize a public facing global leaderboard. A target API for this effort is the Google Play Services API. A basic navigational interface will be included to move between the various games and access the leaderboards for each area.
+This application will provide one basic game that utilizes a public facing global leaderboard. A basic navigational interface will be included to move between the game and the leaderboard.
 
 ### Framework/Toolset
 
 This application is being targeted on NativeScript, and utilizes Angular/Typescript.
-
-### Game List
-
-The final application will include basic game interfaces for:
-- Gladiator Arena
-- Angry Cat
