@@ -4,10 +4,10 @@ node_modules/
 platforms/
 
 # NativeScript Template
-# *.js.map
-# *.js 
+*.js.map
+*.js 
 !webpack.config.js
-# *.css
+*.css
 
 # Logs
 logs
@@ -35,18 +35,3 @@ typings/
 
 # Visual Studio
 .vs/*
-
-# Lee NativeScript
-**/arena/**/*.js
-**/home/**/*.js
-**/leaderboard/**/*.js
-**/pageNotFound/**/*.js
-**/services/**/*.js
-**/settings/**/*.js
-**/shared/**/*.js
-app-routing.module.js
-app.component.js
-app.module.js
-app.android.css
-app.ios.css
-main.js

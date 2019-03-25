@@ -1,18 +1,7 @@
 {
     "files.exclude": {
-        "**/app-routing.module.js": true,
-        "**/app.android.css": true,
-        "**/app.component.js": true,
-        "**/app.ios.css": true,
-        "**/app.module.js": true,
-        "**/arena/**/*.js": true,
-        "**/home/**/*.js": true,
-        "**/leaderboard/**/*.js": true,
-        "**/main.js": true,
-        "**/pageNotFound/**/*.js": true,
-        "**/services/**/*.js": true,
-        "**/settings/**/*.js": true,
-        "**/shared/**/*.js": true,
+        "**/*.css": true,
+        "**/*.js": true,
         "hooks": true,
         "node_modules": true,
         "platforms": true
