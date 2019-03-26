@@ -15,24 +15,19 @@ import { LeaderboardEntry } from "~/app/shared/leaderboardEntry";
     templateUrl: "./leaderboard.component.html"
 })
 export class LeaderboardComponent implements OnInit {
-    private gameIndex: GamesEnum = GamesEnum.ANGRY_CATS;
+    private gameIndex: GamesEnum = GamesEnum.GLADIATOR_COMBAT;
 
     constructor(private gameIDService: GameIDService, private leaderboardService: LeaderboardService) {
         // Use the component constructor to inject providers.
     }
 
     ngOnInit(): void {
-        this.onTapCats();
+        this.onTapArena();
     }
 
     onDrawerButtonTap(): void {
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.showDrawer();
-    }
-
-    onTapCats(): void {
-        this.gameIndex = GamesEnum.ANGRY_CATS;
-        this.leaderboardService.requestTopTen(this.gameIDService.getGameGuid(GamesEnum.ANGRY_CATS));
     }
 
     onTapArena(): void {

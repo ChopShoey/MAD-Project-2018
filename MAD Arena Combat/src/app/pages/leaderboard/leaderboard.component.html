@@ -17,10 +17,6 @@
 </ActionBar>
 <GridLayout columns="20,*,20" rows="10, auto, auto, auto, *, 20" backgroundColor="aliceblue">
     <Label class="leaderboard-icon fa" text="&#xf091;" col="1" row="1"></Label>
-    <GridLayout class="leaderboard-base" col="1" row="2" columns="*,*,*" rows="auto" align-items="stretch">
-        <Button class="{{this.gameIndex === 0 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="0" text="Angry Cats" (tap)="onTapCats($event)"></Button>
-        <Button class="{{this.gameIndex === 1 ? 'leaderboard-btn leaderboard-btn-active' : 'leaderboard-btn leaderboard-btn-inactive'}}" row="0" col="1" text="Gladiator Combat" (tap)="onTapArena($event)"></Button>
-    </GridLayout>
     <GridLayout class="leaderboard-base" col="1" row="3" columns="2*,6*,3*" rows="auto">
         <Label class="leaderboard-title" row="0" col="0" text="Rank"></Label>
         <Label class="leaderboard-title" row="0" col="1" text="Player Name"></Label>

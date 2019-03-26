@@ -53,7 +53,6 @@ export class SettingsComponent {
     submitPlayerName(playerName: string) {
         try {
             this.playerService.postPlayerName(playerName.trim(), this.onSuccessfulPost, this);
-            // this.router.navigateByUrl("/home");
         } catch (error) {
             trace.error(error);
         }
@@ -61,7 +60,7 @@ export class SettingsComponent {
 
     onSuccessfulPost(settingsComponent: SettingsComponent, success: boolean): void {
         if (success) {
-            settingsComponent.router.navigateByUrl("/home");
+            settingsComponent.router.navigateByUrl("/arena/landing");
         } else {
             dialogs.alert("Name could not be updated").then(() => {
                 trace.write("Dialog closed", traceCategories.Debug, traceMessageType.error);
