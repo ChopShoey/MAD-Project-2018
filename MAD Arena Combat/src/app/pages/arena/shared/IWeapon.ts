@@ -1,10 +1,9 @@
 import { EquipmentSlotEnum } from "./equipmentSlotEnum";
-import { IAttacker } from "./IAttacker";
-import { ITarget } from "./ITarget";
+import { IFighter } from "./IFighter";
 
 export interface IWeapon {
     readonly slot: EquipmentSlotEnum;
     weaponRating: number;
 
-    Attack(attacker: IAttacker, target: ITarget);
+    Attack(attacker: IFighter, target: IFighter);
 }

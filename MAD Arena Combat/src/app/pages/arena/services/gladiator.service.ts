@@ -6,8 +6,8 @@ import { Injectable } from "@angular/core";
 import * as applicationSettingsModule from "application-settings";
 import * as trace from "tns-core-modules/trace";
 import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
+import { FighterStatistics } from "../shared/fighterStatistics";
 import { Gladiator } from "../shared/gladiator";
-import { GladiatorStatistics } from "../shared/gladiatorStatistics";
 
 const gladiatorNameKey: string = "gladiatorName";
 
@@ -26,49 +26,49 @@ export class GladiatorService {
             this.gladiator = new Gladiator(name);
 
             // Load stats from settings
-            const newStats = new GladiatorStatistics();
+            const newStats = new FighterStatistics();
             newStats.strength = applicationSettingsModule.getNumber(
-                GladiatorStatistics.strengthKey, GladiatorStatistics.baseStatValue);
+                FighterStatistics.strengthKey, FighterStatistics.baseStatValue);
             newStats.agility = applicationSettingsModule.getNumber(
-                GladiatorStatistics.agilityKey, GladiatorStatistics.baseStatValue);
+                FighterStatistics.agilityKey, FighterStatistics.baseStatValue);
             newStats.defense = applicationSettingsModule.getNumber(
-                GladiatorStatistics.defenseKey, GladiatorStatistics.baseStatValue);
+                FighterStatistics.defenseKey, FighterStatistics.baseStatValue);
             newStats.vitality = applicationSettingsModule.getNumber(
-                GladiatorStatistics.vitalityKey, GladiatorStatistics.baseStatValue);
+                FighterStatistics.vitalityKey, FighterStatistics.baseStatValue);
             newStats.endurance = applicationSettingsModule.getNumber(
-                GladiatorStatistics.enduranceKey, GladiatorStatistics.baseStatValue);
-            this.gladiator.gladiatorStatistics = newStats;
+                FighterStatistics.enduranceKey, FighterStatistics.baseStatValue);
+            this.gladiator.fighterStatistics = newStats;
 
             trace.write(`Created ${this.gladiator.name} with stats:\n` +
-                        `\tStrength: ${this.gladiator.gladiatorStatistics.strength}\n` +
-                        `\tAgility: ${this.gladiator.gladiatorStatistics.agility}\n` +
-                        `\tDefense: ${this.gladiator.gladiatorStatistics.defense}\n` +
-                        `\tVitality: ${this.gladiator.gladiatorStatistics.vitality}\n` +
-                        `\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}\n`,
+                        `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
+                        `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
+                        `\tDefense: ${this.gladiator.fighterStatistics.defense}\n` +
+                        `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
+                        `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
                         traceCategories.Debug,
                         traceMessageType.info);
         } else {
             this.gladiator = new Gladiator(null);
             trace.write(`Created a new gladiator with no name with default base stats:\n` +
-                        `\tStrength: ${this.gladiator.gladiatorStatistics.strength}\n` +
-                        `\tAgility: ${this.gladiator.gladiatorStatistics.agility}\n` +
-                        `\tDefense: ${this.gladiator.gladiatorStatistics.defense}\n` +
-                        `\tVitality: ${this.gladiator.gladiatorStatistics.vitality}\n` +
-                        `\tEndurance: ${this.gladiator.gladiatorStatistics.endurance}\n`,
+                        `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
+                        `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
+                        `\tDefense: ${this.gladiator.fighterStatistics.defense}\n` +
+                        `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
+                        `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
                         traceCategories.Debug,
                         traceMessageType.info);
         }
         trace.write(`Initialized gladiator as ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
     }
 
-    setGladiatorName(proposedName: string) {
+    setFighterName(proposedName: string) {
         // parameter may be null, so catch/rethrow this invalid parameter
         try {
             // Remove possible leading/trailing whitespace
             const newName = proposedName.trim();
             // If newName is falsey then it can throw as well
-            newName ? this.gladiator.name = newName : trace.error("Gladiator name cannot be falsey");
-            trace.write(`Gladiator name is now ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
+            newName ? this.gladiator.name = newName : trace.error("Fighter name cannot be falsey");
+            trace.write(`Fighter name is now ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
             applicationSettingsModule.setString(gladiatorNameKey, this.gladiator.name);
             trace.write(`Saved gladiator name as ${applicationSettingsModule.getString(gladiatorNameKey)}`,
                         traceCategories.Debug, traceMessageType.info);

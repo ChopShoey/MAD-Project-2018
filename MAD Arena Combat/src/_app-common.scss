@@ -108,7 +108,61 @@ $leaderboard-entry-height: $leaderboard-entry-font-size * 1.4;
     height: $leaderboard-entry-height;
 }
 
+// Arena Elements
+$portrait-height: 150;
+$portrait-margin: 15;
 
+.playerIcon {
+    height: $portrait-height;
+    horizontal-align: left;
+    margin-top: $portrait-margin;
+    margin-left: $portrait-margin;
+    margin-right: $portrait-margin;
+    margin-bottom: 0;
+}
+
+.enemyIcon {
+    height: $portrait-height;
+    horizontal-align: right;
+    margin-top: $portrait-margin;
+    margin-left: $portrait-margin;
+    margin-right: $portrait-margin;
+    margin-bottom: 0;
+}
+
+.borderLabel {
+    border-color: black;
+    border-width: 2;
+    border-radius: 15;
+    background-color: azure;
+    margin-top: 0;
+    margin-left: $portrait-margin;
+    margin-right: $portrait-margin;
+}
+
+$separation-margin: 2;
+
+.stat-label-text {
+    horizontal-align: right;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 15;
+    margin-top: $separation-margin;
+    margin-bottom: 0;
+}
+
+.stat-indicator-text {
+    horizontal-align: center;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15;
+    margin-top: $separation-margin;
+    margin-bottom: 0;
+}
+
+.btn-action {
+    width: 60%;
+}
 
 //Action bar
 ActionBar .action-bar-title {

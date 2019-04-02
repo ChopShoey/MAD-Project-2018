@@ -2,7 +2,7 @@ import { Equipment } from "./equipment";
 
 // Author: Lee Shuman
 
-export class GladiatorsEquipment {
+export class FighterEquipment {
     beltEquipment: Equipment;
     legEquipment: Equipment;
     chestEquipment: Equipment;

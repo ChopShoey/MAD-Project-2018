@@ -3,17 +3,23 @@
 
 import * as trace from "tns-core-modules/trace";
 import { Equipment } from "./equipment";
-import { GladiatorsEquipment } from "./gladiatorsEquipment";
-import { GladiatorStatistics } from "./gladiatorStatistics";
+import { FighterEquipment } from "./fighterEquipment";
+import { FighterStatistics } from "./fighterStatistics";
+import { IFighter } from "./IFighter";
+import { ITarget } from "./ITarget";
 
-export class Gladiator {
+export class Gladiator implements IFighter {
     name: string;
-    gladiatorStatistics: GladiatorStatistics;
-    gladiatorsEquipment: GladiatorsEquipment;
+    fighterStatistics: FighterStatistics;
+    fighterEquipment: FighterEquipment;
+    health: number;
+    armorRating: number;
 
     // Imports the playerService so that the GUID can be validated before being set as PlayerInfo
-    constructor(name: string, gladiatorStatistics: GladiatorStatistics = new GladiatorStatistics()) {
+    constructor(name: string, fighterStatistics: FighterStatistics = new FighterStatistics()) {
         name === null || name.trim() !== "" ? this.name = name : trace.error("Name cannot be empty");
-        this.gladiatorStatistics = gladiatorStatistics;
+        this.fighterStatistics = fighterStatistics;
+        this.health = this.fighterStatistics.maxHealth;
+        this.armorRating = 1;
     }
 }

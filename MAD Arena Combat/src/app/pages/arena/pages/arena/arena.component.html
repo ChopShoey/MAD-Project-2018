@@ -22,31 +22,20 @@
         <Label class="action-bar-title" text="Gladiator Arena"></Label>
     </ActionBar>
     
-    <GridLayout class="page page-content" columns="*" rows="auto,auto,auto,auto">
-        <Label  text="&#xf6d9;"
-                class="page-icon fas" 
-                row="0">
-        </Label>
-        <Label  class="info-text" 
-                text="Use this to test posting scores for Gladiator Arena" 
-                width=100% 
-                textWrap="true" 
-                row="1">
-        </Label>
-        <TextField  hint="Enter your score (0-999999999)" 
-                    secure="false" 
-                    returnKeyType="done" 
-                    keyboardType="number"
-                    autocorrect="false" 
-                    maxLength="9" 
-                    class="input input-border" 
-                    row="2" 
-                    (returnPress)="onReturnPress($event)"
-                    (textChange)="onTextChanged($event)" >
-        </TextField>
-        <Button class="btn btn-primary" 
-                text="Submit"
-                [isEnabled]="!this.isTextFieldEmpty"
-                (tap)="onSubmitTap($event)"
-                row="3"></Button>>
+    <GridLayout class="page page-content" columns="auto, 2*, auto, 2*" rows="auto,auto,auto,auto">
+        <Image class="playerIcon" row="0" col="0" colSpan="2" [src]="sebastionImage.src"></Image>
+        <Image class="enemyIcon" row="0" col="2" colSpan="2" [src]="lissomeImage.src"></Image>
+        <Label class="borderLabel" row="1" col="0" rowSpan="3" colSpan="4"></Label>
+        <Label class="stat-label-text" text="Health:" row="1"></Label>
+        <Label class="stat-label-text m-l-20" text="Stamina:" row="2"></Label>
+        <Label class="stat-indicator-text" text="9,999 / 9,999" row="1" col="1"></Label>
+        <Label class="stat-indicator-text" text="999 / 999" row="2" col="1"></Label>
+        <Label class="stat-label-text" text="Health:" row="1" col="2"></Label>
+        <Label class="stat-label-text" text="Stamina:" row="2" col="2"></Label>
+        <Label class="stat-indicator-text" text="9,999 / 9,999" row="1" col="3"></Label>
+        <Label class="stat-indicator-text" text="999 / 999" row="2" col="3"></Label>
+        <Button class="btn btn-primary btn-action" 
+                text="Attack"
+                (tap)="onAttackTap($event)"
+                row="3" colSpan="4"></Button>>
     </GridLayout>
