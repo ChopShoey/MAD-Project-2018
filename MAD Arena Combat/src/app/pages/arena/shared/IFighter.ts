@@ -6,5 +6,6 @@ export interface IFighter {
     fighterStatistics: FighterStatistics;
     fighterEquipment: FighterEquipment;
     health: number;
+    stamina: number;
     armorRating: number;
 }

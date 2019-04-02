@@ -22,11 +22,10 @@ export class FighterStatistics {
     }
     set strength(v: number) {
         const previousValue = this._strength;
-        const newValue = this.forceToRange(v);
-        if (previousValue !== newValue) {
-            this._strength = newValue;
+        if (previousValue !== v) {
+            this._strength = v;
             // applicationSettingsModule.setNumber(FighterStatistics.strengthKey, this._strength);
-            trace.write(`Set strength to ${newValue}`, traceCategories.Debug, traceMessageType.log);
+            trace.write(`Set strength to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Strength was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
@@ -39,11 +38,10 @@ export class FighterStatistics {
     }
     set agility(v: number) {
         const previousValue = this._agility;
-        const newValue = this.forceToRange(v);
-        if (previousValue !== newValue) {
-            this._agility = newValue;
+        if (previousValue !== v) {
+            this._agility = v;
             // applicationSettingsModule.setNumber(FighterStatistics.agilityKey, this._agility);
-            trace.write(`Set agility to ${newValue}`, traceCategories.Debug, traceMessageType.log);
+            trace.write(`Set agility to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Agility was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
@@ -56,11 +54,10 @@ export class FighterStatistics {
     }
     set defense(v: number) {
         const previousValue = this._defense;
-        const newValue = this.forceToRange(v);
-        if (previousValue !== newValue) {
-            this._defense = newValue;
+        if (previousValue !== v) {
+            this._defense = v;
             // applicationSettingsModule.setNumber(FighterStatistics.defenseKey, this._defense);
-            trace.write(`Set defense to ${newValue}`, traceCategories.Debug, traceMessageType.log);
+            trace.write(`Set defense to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Defense was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
@@ -73,11 +70,10 @@ export class FighterStatistics {
     }
     set vitality(v: number) {
         const previousValue = this._vitality;
-        const newValue = this.forceToRange(v);
-        if (previousValue !== newValue) {
-            this._vitality = newValue;
+        if (previousValue !== v) {
+            this._vitality = v;
             // applicationSettingsModule.setNumber(FighterStatistics.vitalityKey, this._vitality);
-            trace.write(`Set vitality to ${newValue}`, traceCategories.Debug, traceMessageType.log);
+            trace.write(`Set vitality to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Vitality was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
@@ -90,11 +86,10 @@ export class FighterStatistics {
     }
     set endurance(v: number) {
         const previousValue = this._endurance;
-        const newValue = this.forceToRange(v);
-        if (previousValue !== newValue) {
-            this._endurance = newValue;
+        if (previousValue !== v) {
+            this._endurance = v;
             // applicationSettingsModule.setNumber(FighterStatistics.enduranceKey, this._endurance);
-            trace.write(`Set endurance to ${newValue}`, traceCategories.Debug, traceMessageType.log);
+            trace.write(`Set endurance to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Endurance was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
@@ -111,11 +106,5 @@ export class FighterStatistics {
 
     constructor() {
         //
-    }
-
-    forceToRange(setValue: number): number {
-        return setValue <= FighterStatistics.maxStatValue ?
-            (setValue >= FighterStatistics.baseStatValue ? setValue : FighterStatistics.baseStatValue) :
-            FighterStatistics.maxStatValue;
     }
 }

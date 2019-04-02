@@ -114,7 +114,7 @@ $portrait-margin: 15;
 
 .playerIcon {
     height: $portrait-height;
-    horizontal-align: left;
+    horizontal-align: center;
     margin-top: $portrait-margin;
     margin-left: $portrait-margin;
     margin-right: $portrait-margin;
@@ -123,7 +123,7 @@ $portrait-margin: 15;
 
 .enemyIcon {
     height: $portrait-height;
-    horizontal-align: right;
+    horizontal-align: center;
     margin-top: $portrait-margin;
     margin-left: $portrait-margin;
     margin-right: $portrait-margin;
@@ -141,6 +141,24 @@ $portrait-margin: 15;
 }
 
 $separation-margin: 2;
+
+.name-label-text {
+    text-align: center;
+    horizontal-align: center;
+    vertical-align: middle;
+    font-size: 20;
+    font-weight: bold;
+    word-wrap: normal;
+}
+
+.enemy-label-text {
+    text-align: center;
+    horizontal-align: center;
+    vertical-align: middle;
+    font-size: 20;
+    font-weight: bold;
+    word-wrap: normal;
+}
 
 .stat-label-text {
     horizontal-align: right;

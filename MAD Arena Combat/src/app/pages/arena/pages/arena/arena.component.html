@@ -22,20 +22,28 @@
         <Label class="action-bar-title" text="Gladiator Arena"></Label>
     </ActionBar>
     
-    <GridLayout class="page page-content" columns="auto, 2*, auto, 2*" rows="auto,auto,auto,auto">
-        <Image class="playerIcon" row="0" col="0" colSpan="2" [src]="sebastionImage.src"></Image>
-        <Image class="enemyIcon" row="0" col="2" colSpan="2" [src]="lissomeImage.src"></Image>
-        <Label class="borderLabel" row="1" col="0" rowSpan="3" colSpan="4"></Label>
-        <Label class="stat-label-text" text="Health:" row="1"></Label>
-        <Label class="stat-label-text m-l-20" text="Stamina:" row="2"></Label>
-        <Label class="stat-indicator-text" text="9,999 / 9,999" row="1" col="1"></Label>
-        <Label class="stat-indicator-text" text="999 / 999" row="2" col="1"></Label>
-        <Label class="stat-label-text" text="Health:" row="1" col="2"></Label>
-        <Label class="stat-label-text" text="Stamina:" row="2" col="2"></Label>
-        <Label class="stat-indicator-text" text="9,999 / 9,999" row="1" col="3"></Label>
-        <Label class="stat-indicator-text" text="999 / 999" row="2" col="3"></Label>
+    <GridLayout class="page page-content" columns="auto, 2*, auto, 2*" rows="auto,auto,auto,auto,auto">
+        <!-- COMMON/BACKGROUND ELEMENTS -->
+        <Label class="borderLabel" row="2" col="0" rowSpan="3" colSpan="4"></Label>
         <Button class="btn btn-primary btn-action" 
                 text="Attack"
                 (tap)="onAttackTap($event)"
-                row="3" colSpan="4"></Button>>
+                row="4" colSpan="4"></Button>>
+
+        <!-- CHARACTER SECTION -->
+        <Image class="playerIcon" row="0" col="0" colSpan="2" [src]="sebastionImage.src"></Image>
+        <Label class="name-label-text m-l-20" textWrap="true" [text]="player.name" row="1" col="0" colSpan="2"></Label>
+        <Label class="stat-label-text" text="Health:" row="2"></Label>
+        <Label class="stat-indicator-text" text="{{player.health}} / {{player.fighterStatistics.maxHealth}}" row="2" col="1"></Label>
+        <Label class="stat-label-text m-l-20" text="Stamina:" row="3"></Label>
+        <Label class="stat-indicator-text" text="{{player.stamina}} / {{player.fighterStatistics.maxStamina}}" row="3" col="1"></Label>
+
+        <!-- ENEMY SECTION -->
+        <Image class="enemyIcon" row="0" col="2" colSpan="2" [src]="lissomeImage.src"></Image>
+        <Label class="enemy-label-text m-r-20" textWrap="true" [text]="enemy.name" row="1" col="2" colSpan="2" ></Label>
+        <Label class="stat-label-text" text="Health:" row="2" col="2"></Label>
+        <Label class="stat-indicator-text" text="{{enemy.health}} / {{enemy.fighterStatistics.maxHealth}}" row="2" col="3"></Label>
+        <Label class="stat-label-text" text="Stamina:" row="3" col="2"></Label>
+        <Label class="stat-indicator-text" text="{{enemy.stamina}} / {{enemy.fighterStatistics.maxStamina}}" row="3" col="3"></Label>
+
     </GridLayout>

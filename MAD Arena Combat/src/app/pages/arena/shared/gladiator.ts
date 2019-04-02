@@ -13,6 +13,7 @@ export class Gladiator implements IFighter {
     fighterStatistics: FighterStatistics;
     fighterEquipment: FighterEquipment;
     health: number;
+    stamina: number;
     armorRating: number;
 
     // Imports the playerService so that the GUID can be validated before being set as PlayerInfo
@@ -20,6 +21,7 @@ export class Gladiator implements IFighter {
         name === null || name.trim() !== "" ? this.name = name : trace.error("Name cannot be empty");
         this.fighterStatistics = fighterStatistics;
         this.health = this.fighterStatistics.maxHealth;
+        this.stamina = this.fighterStatistics.maxStamina;
         this.armorRating = 1;
     }
 }

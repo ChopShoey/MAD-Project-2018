@@ -11,6 +11,7 @@ import { ScoreRegistrationService } from "~/app/services/scoreRegistration.servi
 import { GladiatorService } from "../../services/gladiator.service";
 import { FighterStatistics } from "../../shared/fighterStatistics";
 import { Gladiator } from "../../shared/gladiator";
+import { IFighter } from "../../shared/IFighter";
 
 @Component({
     selector: "Arena",
@@ -21,21 +22,18 @@ export class ArenaComponent implements OnInit {
     private readonly sebastionImage: Image = new Image();
     private readonly lissomeImage: Image = new Image();
     private scoreTextField: TextField;
-    private playerHealth: number;
-    private enemyHealth: number;
-    private enemy: Gladiator;
-    private playerGladiator: Gladiator;
+    private enemy: IFighter;
+    private player: IFighter;
 
     constructor(private scoreRegistrationService: ScoreRegistrationService,
                 private gameIDService: GameIDService,
                 private gladiatorService: GladiatorService) {
         this.sebastionImage.src = "~/app/images/Sebastion Right.png";
         this.lissomeImage.src = "~/app/images/Lissome.png";
-        this.playerGladiator = this.gladiatorService.gladiator;
+        this.player = this.gladiatorService.gladiator;
     }
 
     ngOnInit(): void {
-        this.playerHealth = this.gladiatorService.gladiator.fighterStatistics.maxHealth;
         this.makeEnemy();
     }
 
@@ -61,11 +59,11 @@ export class ArenaComponent implements OnInit {
     makeEnemy(): void {
         /* Set up a random enemy, within a couple of points of each of the player's stats */
         const newStats = new FighterStatistics();
-        newStats.strength = Math.random() * 4 - 2 + this.playerGladiator.fighterStatistics.strength;
-        newStats.agility = Math.random() * 4 - 2 + this.playerGladiator.fighterStatistics.agility;
-        newStats.defense = Math.random() * 4 - 2 + this.playerGladiator.fighterStatistics.defense;
-        newStats.vitality = Math.random() * 4 - 2 + this.playerGladiator.fighterStatistics.vitality;
-        newStats.endurance = Math.random() * 4 - 2 + this.playerGladiator.fighterStatistics.endurance;
+        newStats.strength = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.strength);
+        newStats.agility = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.agility);
+        newStats.defense = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.defense);
+        newStats.vitality = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.vitality);
+        newStats.endurance = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.endurance);
         this.enemy = new Gladiator("Lissome Auger", newStats);
     }
 }
