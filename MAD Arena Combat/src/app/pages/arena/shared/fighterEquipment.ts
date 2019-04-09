@@ -1,15 +1,33 @@
-import { Equipment } from "./equipment";
+import { IEquipment } from "./IEquipment";
+import { Fists } from "./weapons/fists";
 
 // Author: Lee Shuman
 
 export class FighterEquipment {
-    beltEquipment: Equipment;
-    legEquipment: Equipment;
-    chestEquipment: Equipment;
-    helmEquipment: Equipment;
-    feetEquipment: Equipment;
-    leftHandEquipment: Equipment;
-    rightHandEquipment: Equipment;
+    beltEquipment: IEquipment;
+    legEquipment: IEquipment;
+    chestEquipment: IEquipment;
+    helmEquipment: IEquipment;
+    feetEquipment: IEquipment;
+    offHandEquipment: IEquipment;
+    mainHandEquipment: IEquipment;
+
+    get weight(): number {
+        let result = 0;
+        this.beltEquipment ? result += this.beltEquipment.weight : result -= 0;
+        this.legEquipment ? result += this.legEquipment.weight : result -= 0;
+        this.chestEquipment ? result += this.chestEquipment.weight : result -= 0;
+        this.helmEquipment ? result += this.helmEquipment.weight : result -= 0;
+        this.feetEquipment ? result += this.feetEquipment.weight : result -= 0;
+        this.offHandEquipment ? result += this.offHandEquipment.weight : result -= 0;
+        this.mainHandEquipment ? result += this.mainHandEquipment.weight : result -= 0;
+
+        return result;
+    }
+
+    constructor() {
+        this.mainHandEquipment = new Fists();
+    }
 
     getArmorRating(): number {
         return 1; // TODO will need to update to reflect all of the armor

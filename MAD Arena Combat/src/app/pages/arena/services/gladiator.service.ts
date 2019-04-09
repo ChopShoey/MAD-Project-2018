@@ -31,8 +31,6 @@ export class GladiatorService {
                 FighterStatistics.strengthKey, FighterStatistics.baseStatValue);
             newStats.agility = applicationSettingsModule.getNumber(
                 FighterStatistics.agilityKey, FighterStatistics.baseStatValue);
-            newStats.defense = applicationSettingsModule.getNumber(
-                FighterStatistics.defenseKey, FighterStatistics.baseStatValue);
             newStats.vitality = applicationSettingsModule.getNumber(
                 FighterStatistics.vitalityKey, FighterStatistics.baseStatValue);
             newStats.endurance = applicationSettingsModule.getNumber(
@@ -42,7 +40,6 @@ export class GladiatorService {
             trace.write(`Created ${this.gladiator.name} with stats:\n` +
                         `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
                         `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
-                        `\tDefense: ${this.gladiator.fighterStatistics.defense}\n` +
                         `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
                         `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
                         traceCategories.Debug,
@@ -52,7 +49,6 @@ export class GladiatorService {
             trace.write(`Created a new gladiator with no name with default base stats:\n` +
                         `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
                         `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
-                        `\tDefense: ${this.gladiator.fighterStatistics.defense}\n` +
                         `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
                         `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
                         traceCategories.Debug,

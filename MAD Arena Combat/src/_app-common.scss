@@ -182,6 +182,22 @@ $separation-margin: 2;
     width: 60%;
 }
 
+//Battle End Elements
+.battle-end-title {
+    horizontal-align: center;
+    margin-top: 30%;
+    text-align: center;
+    font-size: 36;
+    margin-bottom: 0;
+    color: rgb(187, 171, 27);
+}
+
+.battle-end-text {
+    text-align: center;
+    font-size: 24;
+    color: rgb(124, 112, 4);
+}
+
 //Action bar
 ActionBar .action-bar-title {
     horizontal-align: center;

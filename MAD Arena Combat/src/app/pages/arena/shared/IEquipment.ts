@@ -4,10 +4,10 @@
 import * as trace from "tns-core-modules/trace";
 import { EquipmentSlotEnum } from "./equipmentSlotEnum";
 
-export class Equipment {
+export interface IEquipment {
 
     slot: EquipmentSlotEnum;
-    constructor(name: string) {
-        // placeholder
-    }
+    isWeapon: boolean;
+    isShield: boolean;
+    weight: number;
 }

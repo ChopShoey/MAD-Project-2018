@@ -5,7 +5,9 @@ export interface IFighter {
     name: string;
     fighterStatistics: FighterStatistics;
     fighterEquipment: FighterEquipment;
-    health: number;
-    stamina: number;
-    armorRating: number;
+    currentHealth: number;
+    currentStamina: number;
+    ticksPerAttack: number;
+
+    Attack(target: IFighter);
 }

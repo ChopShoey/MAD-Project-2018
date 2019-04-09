@@ -32,18 +32,18 @@
 
         <!-- CHARACTER SECTION -->
         <Image class="playerIcon" row="0" col="0" colSpan="2" [src]="sebastionImage.src"></Image>
-        <Label class="name-label-text m-l-20" textWrap="true" [text]="player.name" row="1" col="0" colSpan="2"></Label>
-        <Label class="stat-label-text" text="Health:" row="2"></Label>
-        <Label class="stat-indicator-text" text="{{player.health}} / {{player.fighterStatistics.maxHealth}}" row="2" col="1"></Label>
-        <Label class="stat-label-text m-l-20" text="Stamina:" row="3"></Label>
-        <Label class="stat-indicator-text" text="{{player.stamina}} / {{player.fighterStatistics.maxStamina}}" row="3" col="1"></Label>
+        <Label class="name-label-text m-l-20 body" textWrap="true" [text]="player.name" row="1" col="0" colSpan="2"></Label>
+        <Label class="stat-label-text body" text="Health:" row="2"></Label>
+        <Label class="stat-indicator-text body" text="{{player.currentHealth}} / {{player.fighterStatistics.maxHealth}}" row="2" col="1"></Label>
+        <Label class="stat-label-text m-l-20 body" text="Stamina:" row="3"></Label>
+        <Label class="stat-indicator-text body" text="{{player.currentStamina}} / {{player.fighterStatistics.maxStamina}}" row="3" col="1"></Label>
 
         <!-- ENEMY SECTION -->
         <Image class="enemyIcon" row="0" col="2" colSpan="2" [src]="lissomeImage.src"></Image>
-        <Label class="enemy-label-text m-r-20" textWrap="true" [text]="enemy.name" row="1" col="2" colSpan="2" ></Label>
-        <Label class="stat-label-text" text="Health:" row="2" col="2"></Label>
-        <Label class="stat-indicator-text" text="{{enemy.health}} / {{enemy.fighterStatistics.maxHealth}}" row="2" col="3"></Label>
-        <Label class="stat-label-text" text="Stamina:" row="3" col="2"></Label>
-        <Label class="stat-indicator-text" text="{{enemy.stamina}} / {{enemy.fighterStatistics.maxStamina}}" row="3" col="3"></Label>
+        <Label class="enemy-label-text m-r-20 body" textWrap="true" [text]="enemy.name" row="1" col="2" colSpan="2" ></Label>
+        <Label class="stat-label-text body" text="Health:" row="2" col="2"></Label>
+        <Label class="stat-indicator-text body" text="{{enemy.currentHealth}} / {{enemy.fighterStatistics.maxHealth}}" row="2" col="3"></Label>
+        <Label class="stat-label-text body" text="Stamina:" row="3" col="2"></Label>
+        <Label class="stat-indicator-text body" text="{{enemy.currentStamina}} / {{enemy.fighterStatistics.maxStamina}}" row="3" col="3"></Label>
 
     </GridLayout>

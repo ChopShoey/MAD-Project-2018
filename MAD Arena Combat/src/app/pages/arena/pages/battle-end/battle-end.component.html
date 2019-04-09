@@ -1,0 +1,12 @@
+<StackLayout class="page">
+    <Label class="battle-end-title body" text="Your Gladiator {{victory === 'true' ? 'Won!' : 'Lost...'}}"></Label>
+    <Label class="battle-end-text body" text="Score was {{battleScore}}"></Label>
+    <Button class="btn btn-primary btn-action" 
+                text="Call out for more"
+                (tap)="onMoreTap($event)">
+            </Button>
+    <Button class="btn btn-primary btn-action" 
+                text="Get some rest"
+                (tap)="onRestTap($event)"
+                row="4" colSpan="4"></Button>>
+</StackLayout>>

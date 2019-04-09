@@ -1,6 +1,6 @@
 export enum EquipmentSlotEnum {
-    LEFT = 1,
-    RIGHT = 2,
+    OFFHAND = 1,
+    MAINHAND = 2,
     BOTH = 3,
     BELT = 4,
     LEG = 5,

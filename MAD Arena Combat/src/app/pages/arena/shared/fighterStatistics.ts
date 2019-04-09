@@ -9,7 +9,6 @@ export class FighterStatistics {
 
     static readonly strengthKey: string = "FighterStrength";
     static readonly agilityKey: string = "FighterAgility";
-    static readonly defenseKey: string = "FighterDefense";
     static readonly vitalityKey: string = "FighterVitality";
     static readonly enduranceKey: string = "FighterEndurance";
 
@@ -44,22 +43,6 @@ export class FighterStatistics {
             trace.write(`Set agility to ${v}`, traceCategories.Debug, traceMessageType.log);
         } else {
             trace.write(`Agility was not updated because it was already ${previousValue}`,
-                traceCategories.Debug, traceMessageType.info);
-        }
-    }
-
-    private _defense: number;
-    get defense(): number {
-        return this._defense || FighterStatistics.baseStatValue;
-    }
-    set defense(v: number) {
-        const previousValue = this._defense;
-        if (previousValue !== v) {
-            this._defense = v;
-            // applicationSettingsModule.setNumber(FighterStatistics.defenseKey, this._defense);
-            trace.write(`Set defense to ${v}`, traceCategories.Debug, traceMessageType.log);
-        } else {
-            trace.write(`Defense was not updated because it was already ${previousValue}`,
                 traceCategories.Debug, traceMessageType.info);
         }
     }

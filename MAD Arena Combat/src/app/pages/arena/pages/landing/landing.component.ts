@@ -55,7 +55,7 @@ export class ArenaLandingComponent implements OnInit {
 
   submitGladiatorName(gladiatorName: string): void {
     try {
-      this.gladiatorService.setGladiatorName(gladiatorName);
+      this.gladiatorService.setFighterName(gladiatorName);
       this.router.navigateByUrl("arena/arena");
     } catch (error) {
       trace.error(error);
