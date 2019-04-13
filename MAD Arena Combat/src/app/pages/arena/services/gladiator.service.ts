@@ -19,40 +19,34 @@ export class GladiatorService {
 
     constructor() {
         // See if a gladiator name has been stored in settings
-        if (applicationSettingsModule.hasKey(gladiatorNameKey)) {
-            // Load up the gladiator properties from settings
-            const name = applicationSettingsModule.getString(gladiatorNameKey);
-            trace.write(`name constant is ${name}`, trace.categories.Debug, trace.messageType.log);
-            this.gladiator = new Gladiator(name);
+        if (applicationSettingsModule.hasKey(gladiatorNameKey) &&
+            applicationSettingsModule.getString(gladiatorNameKey) !== undefined) {
+                // Load up the gladiator properties from settings
+                const name = applicationSettingsModule.getString(gladiatorNameKey);
+                trace.write(`name constant is ${name}`, trace.categories.Debug, trace.messageType.log);
+                this.gladiator = new Gladiator(name);
 
-            // Load stats from settings
-            const newStats = new FighterStatistics();
-            newStats.strength = applicationSettingsModule.getNumber(
-                FighterStatistics.strengthKey, FighterStatistics.baseStatValue);
-            newStats.agility = applicationSettingsModule.getNumber(
-                FighterStatistics.agilityKey, FighterStatistics.baseStatValue);
-            newStats.vitality = applicationSettingsModule.getNumber(
-                FighterStatistics.vitalityKey, FighterStatistics.baseStatValue);
-            newStats.endurance = applicationSettingsModule.getNumber(
-                FighterStatistics.enduranceKey, FighterStatistics.baseStatValue);
-            this.gladiator.fighterStatistics = newStats;
+                // Load stats from settings
+                const newStats = new FighterStatistics();
+                newStats.strength = applicationSettingsModule.getNumber(
+                    FighterStatistics.strengthKey, FighterStatistics.baseStatValue);
+                newStats.agility = applicationSettingsModule.getNumber(
+                    FighterStatistics.agilityKey, FighterStatistics.baseStatValue);
+                newStats.vitality = applicationSettingsModule.getNumber(
+                    FighterStatistics.vitalityKey, FighterStatistics.baseStatValue);
+                newStats.endurance = applicationSettingsModule.getNumber(
+                    FighterStatistics.enduranceKey, FighterStatistics.baseStatValue);
+                this.gladiator.fighterStatistics = newStats;
 
-            trace.write(`Created ${this.gladiator.name} with stats:\n` +
-                        `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
-                        `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
-                        `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
-                        `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
-                        traceCategories.Debug,
-                        traceMessageType.info);
+                trace.write(`Created ${this.gladiator.name} with stats:\n` +
+                            `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
+                            `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
+                            `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
+                            `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
+                            traceCategories.Debug,
+                            traceMessageType.info);
         } else {
-            this.gladiator = new Gladiator(null);
-            trace.write(`Created a new gladiator with no name with default base stats:\n` +
-                        `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
-                        `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
-                        `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
-                        `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
-                        traceCategories.Debug,
-                        traceMessageType.info);
+            this.generateBaseGladiator();
         }
         trace.write(`Initialized gladiator as ${this.gladiator.name}`, traceCategories.Debug, traceMessageType.info);
     }
@@ -72,5 +66,21 @@ export class GladiatorService {
             // Don't handle broad exceptions here
             trace.error(error);
         }
+    }
+
+    generateBaseGladiator() {
+        this.gladiator = new Gladiator(null);
+        applicationSettingsModule.remove(gladiatorNameKey);
+        applicationSettingsModule.setNumber(FighterStatistics.strengthKey, this.gladiator.fighterStatistics.strength);
+        applicationSettingsModule.setNumber(FighterStatistics.agilityKey, this.gladiator.fighterStatistics.agility);
+        applicationSettingsModule.setNumber(FighterStatistics.vitalityKey, this.gladiator.fighterStatistics.vitality);
+        applicationSettingsModule.setNumber(FighterStatistics.enduranceKey, this.gladiator.fighterStatistics.endurance);
+        trace.write(`Created a new gladiator with no name with default base stats:\n` +
+                    `\tStrength: ${this.gladiator.fighterStatistics.strength}\n` +
+                    `\tAgility: ${this.gladiator.fighterStatistics.agility}\n` +
+                    `\tVitality: ${this.gladiator.fighterStatistics.vitality}\n` +
+                    `\tEndurance: ${this.gladiator.fighterStatistics.endurance}\n`,
+                    traceCategories.Debug,
+                    traceMessageType.info);
     }
 }

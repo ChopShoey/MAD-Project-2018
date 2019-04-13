@@ -34,6 +34,16 @@ export class ArenaComponent implements OnInit {
     private playerTicksToAttack: number;
     private enemyTicksToAttack: number;
 
+    private _crowdEnergyLevel: number = 0;
+    set crowdEnergyLevel(newLevel: number) {
+        newLevel <= 100 ? newLevel = newLevel : newLevel = 100;
+        newLevel >= 0 ? newLevel = newLevel : newLevel = 0;
+        this._crowdEnergyLevel = newLevel;
+    }
+    get crowdEnergyLevel(): number {
+        return this._crowdEnergyLevel;
+    }
+
     constructor(private route: ActivatedRoute,
                 private scoreRegistrationService: ScoreRegistrationService,
                 private gameIDService: GameIDService,
@@ -58,18 +68,30 @@ export class ArenaComponent implements OnInit {
                         `\tEndurance: ${this.enemy.fighterStatistics.endurance}\n`,
                         traceCategories.Debug,
                         traceMessageType.info);
+        // Preconditions for testing behavior in app. Allows last hit win for player that dies to win.
+        this.playerTicksToAttack = 1;
+        this.enemyTicksToAttack = 20;
+        this.player.currentHealth = 1;
+        this.player.currentStamina = 0;
+        this.enemy.currentHealth = 1;
+        this.enemy.currentStamina = 0;
     }
 
     letEnemyStrike(): any {
         while (this.enemy.currentHealth > 0 && this.enemyTicksToAttack < this.playerTicksToAttack) {
+            if (this.enemy.currentStamina <= this.enemy.fighterStatistics.maxStamina * .1) {
+                this.crowdEnergyLevel += 5;
+                trace.write(`Crowd is getting excited: ${this.crowdEnergyLevel} Energy.`,
+                    traceCategories.Debug, traceMessageType.info);
+            }
             this.enemy.Attack(this.player);
             // Move the player ticks forward, reset enemy ticks
             this.playerTicksToAttack -= this.enemyTicksToAttack;
             this.enemyTicksToAttack = this.enemy.ticksPerAttack;
 
-            if (this.player.currentHealth < 0) {
+            if (this.player.currentHealth <= 0) {
                 this.onEnemyWins();
-            } else if (this.enemy.currentHealth < 0) {
+            } else if (this.enemy.currentHealth <= 0) {
                 this.onPlayerWins();
             }
         }
@@ -86,13 +108,18 @@ export class ArenaComponent implements OnInit {
         // If enemy can strike first, it goes first.
         this.letEnemyStrike();
         if (this.player.currentHealth > 0) {
+            if (this.player.currentStamina <= this.player.fighterStatistics.maxStamina * .1) {
+                this.crowdEnergyLevel += 5;
+                trace.write(`Crowd is getting excited: ${this.crowdEnergyLevel} Energy.`,
+                    traceCategories.Debug, traceMessageType.info);
+            }
             this.player.Attack(this.enemy);
             if (this.enemy.currentHealth > 0) {
                 // Move the enemies ticks forward, reset player ticks
                 this.enemyTicksToAttack -= this.playerTicksToAttack;
                 this.playerTicksToAttack = this.player.ticksPerAttack;
                 // Update damage score
-                this.battleScore += preEnemyHealth - this.enemy.currentHealth;
+                this.battleScore += preEnemyHealth - this.enemy.currentHealth + this.crowdEnergyLevel;
             } else {
                 this.onPlayerWins();
             }
@@ -124,19 +151,32 @@ export class ArenaComponent implements OnInit {
         const scoreBonus = Math.round(this.enemy.fighterStatistics.maxHealth * bonusScoreFactor);
         this.battleScore += scoreBonus;
 
-        const gladiatorDiedToWin = this.player.currentHealth <= 0;
+        const isGladiatorDead = this.player.currentHealth <= 0;
         const navigationExtras: ExtendedNavigationExtras = {
             queryParams: {
                 victory: true,
                 score: this.battleScore,
-                isGladiatorDead: gladiatorDiedToWin
+                isGladiatorDead
             }
         };
-        trace.write(`Player won, bonus was ${scoreBonus} and final score was ${this.battleScore}`,
+        trace.write(`Player won, bonus was ${scoreBonus} and final score was ${this.battleScore}. Is gladiator dead was ${isGladiatorDead}`,
                   traceCategories.Debug, traceMessageType.info);
         this.routerExtensions.navigate(["arena/battle-end"], navigationExtras);
     }
 
+    onTauntTap(eventData: EventData): void {
+        const prePlayerHealth = this.player.currentHealth;
+        this.enemy.Attack(this.player);
+        this.enemyTicksToAttack = this.enemy.ticksPerAttack;
+        this.crowdEnergyLevel += 5;
+        trace.write(`Crowd is getting excited: ${this.crowdEnergyLevel} Energy.`,
+                    traceCategories.Debug, traceMessageType.info);
+        if (this.player.currentHealth <= 0) {
+            this.onEnemyWins();
+        } else if (this.enemy.currentHealth <= 0) {
+            this.onPlayerWins();
+        }
+    }
     onTextChanged(eventData: EventData): void {
         // This is the first known method that is called by the textField,
         // so this stores the object in the backing field.
@@ -152,10 +192,10 @@ export class ArenaComponent implements OnInit {
         // newStats.agility = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.agility);
         // newStats.vitality = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.vitality);
         // newStats.endurance = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.endurance);
-        newStats.strength = 8;
-        newStats.agility = 15;
+        newStats.strength = 3;
+        newStats.agility = 3;
         newStats.vitality = 8;
-        newStats.endurance = 8;
+        newStats.endurance = 9;
         this.enemy = new Gladiator("Lissome Auger", newStats);
     }
 }
