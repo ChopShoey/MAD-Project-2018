@@ -54,7 +54,8 @@ export class Gladiator implements IFighter {
             target.currentHealth -= damage;
             // Subtract health in place of stamina, but do not kill attacker.
             // Cost is decreased due to decreased hit power.
-            const healthCost = Math.round((hitCost - this.currentStamina) * damagePenaltyFactor);
+            let healthCost = Math.round((hitCost - this.currentStamina) * damagePenaltyFactor);
+            healthCost > damage ? healthCost = damage : healthCost = healthCost;
             this.currentHealth -= healthCost;
             // Make sure stamina is gone after it has been spent.
             this.currentStamina = 0;

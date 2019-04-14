@@ -69,12 +69,12 @@ export class ArenaComponent implements OnInit {
                         traceCategories.Debug,
                         traceMessageType.info);
         // Preconditions for testing behavior in app. Allows last hit win for player that dies to win.
-        this.playerTicksToAttack = 1;
-        this.enemyTicksToAttack = 20;
-        this.player.currentHealth = 1;
-        this.player.currentStamina = 0;
-        this.enemy.currentHealth = 1;
-        this.enemy.currentStamina = 0;
+        // this.playerTicksToAttack = 1;
+        // this.enemyTicksToAttack = 20;
+        // this.player.currentHealth = 1;
+        // this.player.currentStamina = 0;
+        // this.enemy.currentHealth = 1;
+        // this.enemy.currentStamina = 0;
     }
 
     letEnemyStrike(): any {
@@ -120,6 +120,9 @@ export class ArenaComponent implements OnInit {
                 this.playerTicksToAttack = this.player.ticksPerAttack;
                 // Update damage score
                 this.battleScore += preEnemyHealth - this.enemy.currentHealth + this.crowdEnergyLevel;
+                if (this.player.currentHealth <= 0) {
+                    this.onEnemyWins();
+                }
             } else {
                 this.onPlayerWins();
             }

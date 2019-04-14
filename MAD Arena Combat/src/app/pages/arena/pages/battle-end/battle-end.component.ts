@@ -6,6 +6,9 @@ import { EventData } from "tns-core-modules/ui/page/page";
 import { GladiatorService } from "../../services/gladiator.service";
 import { Gladiator } from "../../shared/gladiator";
 import { timestamp } from "rxjs/operators";
+import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
+import { GamesEnum } from "~/app/shared/gamesEnum";
+import { GameIDService } from "~/app/services/gameID.service";
 
 @Component({
   selector: "ns-battle-end",
@@ -20,10 +23,17 @@ export class BattleEndComponent implements OnInit {
   get isGladiatorDead(): boolean {
     return this.isGladiatorDeadString === "true";
   }
+  get isGladiatorRested(): boolean {
+    return this.gladiatorService.gladiator.currentHealth === 
+      this.gladiatorService.gladiator.fighterStatistics.maxHealth && this.gladiatorService.gladiator.currentStamina
+      === this.gladiatorService.gladiator.fighterStatistics.maxStamina;
+  }
 
   constructor(private route: ActivatedRoute,
               private routerExtensions: RouterExtensions,
-              private gladiatorService: GladiatorService) {
+              private gladiatorService: GladiatorService,
+              private scoreRegistrationService: ScoreRegistrationService,
+              private gameIDService: GameIDService) {
       this.route.queryParams.subscribe((params) => {
       this.battleScore = Number.parseInt(params.score, 10);
       this.victory = params.victory;
@@ -37,7 +47,9 @@ export class BattleEndComponent implements OnInit {
 
   onFightAgainTap(eventData: EventData) {
     if (this.isGladiatorDead) {
-      // Get score service and post the score here next time
+      // Post the score for the current run.
+      this.scoreRegistrationService.postScore(this.battleScore,
+        this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
       this.gladiatorService.generateBaseGladiator();
       this.routerExtensions.navigate(["arena/landing"]);
     } else {
@@ -48,6 +60,11 @@ export class BattleEndComponent implements OnInit {
   onRestTap(eventData: EventData) {
     this.gladiatorService.gladiator.currentHealth = this.gladiatorService.gladiator.fighterStatistics.maxHealth;
     this.gladiatorService.gladiator.currentStamina = this.gladiatorService.gladiator.fighterStatistics.maxStamina;
+    // Post the score for the current run.
+    this.scoreRegistrationService.postScore(this.battleScore,
+      this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
+    // Resting resets the current score
+    this.battleScore = 0;
   }
 
   navigateToArenaWithScore() {
