@@ -22,7 +22,7 @@
         <Label class="action-bar-title" text="Gladiator Arena"></Label>
     </ActionBar>
     
-    <GridLayout class="page page-content" columns="auto, 2*, auto, 2*" rows="auto,auto,auto,auto,auto,auto">
+    <GridLayout class="page page-content" columns="auto, 2*, auto, 2*" rows="auto,auto,auto,auto,auto,auto,auto,auto">
         <!-- COMMON/BACKGROUND ELEMENTS -->
         <Label class="borderLabel" row="2" col="0" rowSpan="4" colSpan="4"></Label>
         <Button class="btn btn-primary btn-action" 
@@ -33,6 +33,11 @@
                 text="Taunt"
                 (tap)="onTauntTap($event)"
                 row="5" colSpan="4"></Button>>
+        <Label class="stat-indicator-text body" text="Crowd Energy" row="6"></Label>
+        <Progress [value]="crowdEnergyLevel"
+                        maxValue="100"
+                        class="m-20"
+                        row="7" colSpan="4"></Progress>
 
         <!-- CHARACTER SECTION -->
         <Image class="playerIcon" row="0" col="0" colSpan="2" [src]="sebastionImage.src"></Image>

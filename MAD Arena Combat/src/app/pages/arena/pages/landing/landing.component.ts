@@ -7,6 +7,7 @@ import * as trace from "tns-core-modules/trace";
 import { EventData, traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field/text-field";
 import { GladiatorService } from "../../services/gladiator.service";
+import { RunningScoreService } from "../../services/running-score.service";
 
 @Component({
   selector: "ns-landing",
@@ -24,12 +25,15 @@ export class ArenaLandingComponent implements OnInit {
     return this._gladiatorName;
   }
 
-  constructor(private router: Router, private gladiatorService: GladiatorService) {
+  constructor(private router: Router,
+              private gladiatorService: GladiatorService,
+              private runningScoreService: RunningScoreService) {
     // May be useful for importing services for loading.
   }
 
   ngOnInit() {
     if (this.gladiatorService.gladiator.name !== null) {
+      this.runningScoreService.currentScore = 0;
       this.router.navigateByUrl("arena/arena");
       trace.write(`Rerouting to the arena, gladiator name was ${this.gladiatorService.gladiator.name}`,
                   traceCategories.Debug, traceMessageType.info);
@@ -56,6 +60,7 @@ export class ArenaLandingComponent implements OnInit {
   submitGladiatorName(gladiatorName: string): void {
     try {
       this.gladiatorService.setFighterName(gladiatorName);
+      this.runningScoreService.currentScore = 0;
       this.router.navigateByUrl("arena/arena");
     } catch (error) {
       trace.error(error);

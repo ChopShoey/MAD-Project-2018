@@ -2,13 +2,16 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ExtendedNavigationExtras } from "nativescript-angular/router/router-extensions";
-import { EventData } from "tns-core-modules/ui/page/page";
-import { GladiatorService } from "../../services/gladiator.service";
-import { Gladiator } from "../../shared/gladiator";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { timestamp } from "rxjs/operators";
+import * as app from "tns-core-modules/application";
+import { EventData } from "tns-core-modules/ui/page/page";
+import { GameIDService } from "~/app/services/gameID.service";
 import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
 import { GamesEnum } from "~/app/shared/gamesEnum";
-import { GameIDService } from "~/app/services/gameID.service";
+import { GladiatorService } from "../../services/gladiator.service";
+import { RunningScoreService } from "../../services/running-score.service";
+import { Gladiator } from "../../shared/gladiator";
 
 @Component({
   selector: "ns-battle-end",
@@ -17,7 +20,6 @@ import { GameIDService } from "~/app/services/gameID.service";
   moduleId: module.id
 })
 export class BattleEndComponent implements OnInit {
-  private battleScore: number;
   private victory: string;
   private isGladiatorDeadString: string;
   get isGladiatorDead(): boolean {
@@ -32,10 +34,10 @@ export class BattleEndComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private routerExtensions: RouterExtensions,
               private gladiatorService: GladiatorService,
+              private runningScoreService: RunningScoreService,
               private scoreRegistrationService: ScoreRegistrationService,
               private gameIDService: GameIDService) {
       this.route.queryParams.subscribe((params) => {
-      this.battleScore = Number.parseInt(params.score, 10);
       this.victory = params.victory;
       this.isGladiatorDeadString = params.isGladiatorDead;
     });
@@ -45,10 +47,15 @@ export class BattleEndComponent implements OnInit {
     // Unused
   }
 
+  onDrawerButtonTap(): void {
+    const sideDrawer = <RadSideDrawer>app.getRootView();
+    sideDrawer.showDrawer();
+  }
+
   onFightAgainTap(eventData: EventData) {
     if (this.isGladiatorDead) {
       // Post the score for the current run.
-      this.scoreRegistrationService.postScore(this.battleScore,
+      this.scoreRegistrationService.postScore(this.runningScoreService.currentScore,
         this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
       this.gladiatorService.generateBaseGladiator();
       this.routerExtensions.navigate(["arena/landing"]);
@@ -61,18 +68,13 @@ export class BattleEndComponent implements OnInit {
     this.gladiatorService.gladiator.currentHealth = this.gladiatorService.gladiator.fighterStatistics.maxHealth;
     this.gladiatorService.gladiator.currentStamina = this.gladiatorService.gladiator.fighterStatistics.maxStamina;
     // Post the score for the current run.
-    this.scoreRegistrationService.postScore(this.battleScore,
+    this.scoreRegistrationService.postScore(this.runningScoreService.currentScore,
       this.gameIDService.getGameGuid(GamesEnum.GLADIATOR_COMBAT));
     // Resting resets the current score
-    this.battleScore = 0;
+    this.runningScoreService.currentScore = 0;
   }
 
   navigateToArenaWithScore() {
-    const navigationExtras: ExtendedNavigationExtras = {
-      queryParams: {
-          score: this.battleScore
-      }
-    };
-    this.routerExtensions.navigate(["arena/arena"], navigationExtras);
+    this.routerExtensions.navigate(["arena/arena"]);
   }
 }

@@ -17,6 +17,7 @@ import { Gladiator } from "~/app/pages/arena/shared/gladiator";
 import { IFighter } from "~/app/pages/arena/shared/IFighter";
 import { GameIDService } from "~/app/services/gameID.service";
 import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
+import { RunningScoreService } from "../../services/running-score.service";
 
 @Component({
     selector: "Arena",
@@ -27,7 +28,6 @@ export class ArenaComponent implements OnInit {
     private readonly sebastionImage: Image = new Image();
     private readonly lissomeImage: Image = new Image();
 
-    private battleScore: number = 0;
     private scoreTextField: TextField;
     private enemy: IFighter;
     private player: IFighter;
@@ -45,13 +45,11 @@ export class ArenaComponent implements OnInit {
     }
 
     constructor(private route: ActivatedRoute,
+                private runningScoreService: RunningScoreService,
                 private scoreRegistrationService: ScoreRegistrationService,
                 private gameIDService: GameIDService,
                 private gladiatorService: GladiatorService,
                 private routerExtensions: RouterExtensions) {
-        this.route.queryParams.subscribe((params) => {
-            this.battleScore = Number.parseInt(params.score || "0", 10);
-        });
         this.sebastionImage.src = "~/app/images/Sebastion Right.png";
         this.lissomeImage.src = "~/app/images/Lissome.png";
         this.player = this.gladiatorService.gladiator;
@@ -119,7 +117,10 @@ export class ArenaComponent implements OnInit {
                 this.enemyTicksToAttack -= this.playerTicksToAttack;
                 this.playerTicksToAttack = this.player.ticksPerAttack;
                 // Update damage score
-                this.battleScore += preEnemyHealth - this.enemy.currentHealth + this.crowdEnergyLevel;
+                this.runningScoreService.currentScore += preEnemyHealth - this.enemy.currentHealth +
+                    this.crowdEnergyLevel;
+                trace.write(`Score is now ${this.runningScoreService.currentScore}`,
+                    traceCategories.Debug, traceMessageType.info);
                 if (this.player.currentHealth <= 0) {
                     this.onEnemyWins();
                 }
@@ -134,11 +135,10 @@ export class ArenaComponent implements OnInit {
         const navigationExtras: ExtendedNavigationExtras = {
             queryParams: {
                 victory: false,
-                score: this.battleScore,
                 isGladiatorDead: true
             }
         };
-        trace.write(`Enemy won, score was ${this.battleScore}`,
+        trace.write(`Enemy won, score was ${this.runningScoreService.currentScore}`,
                   traceCategories.Debug, traceMessageType.info);
         this.routerExtensions.navigate(["arena/battle-end"], navigationExtras);
     }
@@ -152,17 +152,17 @@ export class ArenaComponent implements OnInit {
         // Add bonus points for winning
         const bonusScoreFactor = wasOverkill ? 0.2 : 0.05;
         const scoreBonus = Math.round(this.enemy.fighterStatistics.maxHealth * bonusScoreFactor);
-        this.battleScore += scoreBonus;
+        this.runningScoreService.currentScore += scoreBonus;
 
         const isGladiatorDead = this.player.currentHealth <= 0;
         const navigationExtras: ExtendedNavigationExtras = {
             queryParams: {
                 victory: true,
-                score: this.battleScore,
                 isGladiatorDead
             }
         };
-        trace.write(`Player won, bonus was ${scoreBonus} and final score was ${this.battleScore}. Is gladiator dead was ${isGladiatorDead}`,
+        // tslint:disable-next-line: max-line-length
+        trace.write(`Player won, bonus was ${scoreBonus} and final score was ${this.runningScoreService.currentScore}. Is gladiator dead was ${isGladiatorDead}`,
                   traceCategories.Debug, traceMessageType.info);
         this.routerExtensions.navigate(["arena/battle-end"], navigationExtras);
     }
