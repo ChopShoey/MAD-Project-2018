@@ -1,3 +1,6 @@
+// Author: Lee Shuman
+// Defines equipment points for a humanoid.
+
 export enum EquipmentSlotEnum {
     OFFHAND = 1,
     MAINHAND = 2,

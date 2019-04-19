@@ -1,6 +1,8 @@
-import { EquipmentSlotEnum } from "../equipmentSlotEnum";
-import { IEquipment } from "../IEquipment";
-import { IFighter } from "../IFighter";
+// Author: Lee Shuman
+// Used to modify attack behavior when no weapons are equipped.
+
+import { EquipmentSlotEnum } from "~/app/pages/arena/shared/equipmentSlotEnum";
+import { IEquipment } from "~/app/pages/arena/shared/IEquipment";
 
 export class Fists implements IEquipment {
     readonly slot: EquipmentSlotEnum = EquipmentSlotEnum.BOTH;

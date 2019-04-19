@@ -1,7 +1,8 @@
+// Author: Lee Shuman
+// Aggregation class for calculating armor/weapon impacts.
+
 import { IEquipment } from "./IEquipment";
 import { Fists } from "./weapons/fists";
-
-// Author: Lee Shuman
 
 export class FighterEquipment {
     beltEquipment: IEquipment;

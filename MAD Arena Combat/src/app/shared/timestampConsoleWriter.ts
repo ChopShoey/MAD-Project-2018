@@ -1,9 +1,7 @@
 // Copied and modified from https://docs.nativescript.org/ns-framework-modules/trace
 
-import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
 import * as trace from "tns-core-modules/trace";
 
-const array = new ObservableArray();
 
 export class TimestampConsoleWriter implements trace.TraceWriter {
     constructor() {
@@ -16,7 +14,7 @@ export class TimestampConsoleWriter implements trace.TraceWriter {
         }
 
         const msgType = isUndefined(type) ? trace.messageType.log : type;
-        let msgTypeString: string
+        let msgTypeString: string;
         switch (msgType) {
             case trace.messageType.log:
                 msgTypeString = "LOG";

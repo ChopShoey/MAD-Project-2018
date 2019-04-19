@@ -1,17 +1,18 @@
+// Author: Lee Shuman
+// Show the user how they did, and give them ways to move on. Also posts scores at the end of a run of battles.
+
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
-import { ExtendedNavigationExtras } from "nativescript-angular/router/router-extensions";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import { timestamp } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
 import { EventData } from "tns-core-modules/ui/page/page";
+
+import { GladiatorService } from "~/app/pages/arena/services/gladiator.service";
+import { RunningScoreService } from "~/app/pages/arena/services/running-score.service";
 import { GameIDService } from "~/app/services/gameID.service";
 import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
 import { GamesEnum } from "~/app/shared/gamesEnum";
-import { GladiatorService } from "../../services/gladiator.service";
-import { RunningScoreService } from "../../services/running-score.service";
-import { Gladiator } from "../../shared/gladiator";
 
 @Component({
   selector: "ns-battle-end",
@@ -26,7 +27,7 @@ export class BattleEndComponent implements OnInit {
     return this.isGladiatorDeadString === "true";
   }
   get isGladiatorRested(): boolean {
-    return this.gladiatorService.gladiator.currentHealth === 
+    return this.gladiatorService.gladiator.currentHealth ===
       this.gladiatorService.gladiator.fighterStatistics.maxHealth && this.gladiatorService.gladiator.currentStamina
       === this.gladiatorService.gladiator.fighterStatistics.maxStamina;
   }

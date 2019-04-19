@@ -1,3 +1,6 @@
+// Author: Lee Shuman
+// Simple weapon rating interface
+
 import { EquipmentSlotEnum } from "./equipmentSlotEnum";
 import { IFighter } from "./IFighter";
 

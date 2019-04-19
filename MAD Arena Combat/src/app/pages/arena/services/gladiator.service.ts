@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 // This service encapsulates the player information logic, so that the application is only
 // concerned with what the players name is or if it is set.
 
@@ -6,8 +6,9 @@ import { Injectable } from "@angular/core";
 import * as applicationSettingsModule from "application-settings";
 import * as trace from "tns-core-modules/trace";
 import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
-import { FighterStatistics } from "../shared/fighterStatistics";
-import { Gladiator } from "../shared/gladiator";
+
+import { FighterStatistics } from "~/app/pages/arena/shared/fighterStatistics";
+import { Gladiator } from "~/app/pages/arena/shared/gladiator";
 
 const gladiatorNameKey: string = "gladiatorName";
 

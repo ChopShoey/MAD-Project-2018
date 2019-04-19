@@ -1,4 +1,4 @@
-<!-- Author/s: Lee Shuman -->
+<!-- Author: Lee Shuman -->
 
 <ActionBar class="action-bar">
     <!-- 
@@ -24,12 +24,15 @@
 
 <StackLayout class="page">
     <Label class="battle-end-title body" text="Your Gladiator {{victory === 'true' ? 'Won!' : 'Lost...'}}"></Label>
+    <!-- This is a pretty rare case, but it should be possible to win and die at the same time. 
+        This triggers different behavior and needs to be indicated to the user.-->
     <Label class="battle-end-text body" text="But they died..." *ngIf="isGladiatorDead && victory === 'true'"></Label>
     <Label class="battle-end-text body" text="Score was {{runningScoreService.currentScore}}"></Label>
     <Button class="btn btn-primary btn-action" 
                 text="{{isGladiatorDead ? 'Find a new fighter...' : 'Signal a New Challenger'}}"
                 (tap)="onFightAgainTap($event)">
             </Button>
+    <!-- Only necessary if gladiator is still alive and has depleted health/stamina -->
     <Button class="btn btn-primary btn-action" 
                 text="Get some rest"
                 *ngIf="!isGladiatorDead && !isGladiatorRested"

@@ -6,8 +6,9 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as trace from "tns-core-modules/trace";
 import { EventData, traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { TextField } from "tns-core-modules/ui/text-field/text-field";
-import { GladiatorService } from "../../services/gladiator.service";
-import { RunningScoreService } from "../../services/running-score.service";
+
+import { GladiatorService } from "~/app/pages/arena/services/gladiator.service";
+import { RunningScoreService } from "~/app/pages/arena/services/running-score.service";
 
 @Component({
   selector: "ns-landing",

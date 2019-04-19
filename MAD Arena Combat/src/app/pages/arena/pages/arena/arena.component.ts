@@ -1,7 +1,7 @@
 // Author: Lee Shuman
+// Core behavioral class for a fight between a gladiator and its enemy.
 
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ExtendedNavigationExtras } from "nativescript-angular/router/router-extensions";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
@@ -15,8 +15,6 @@ import { GladiatorService } from "~/app/pages/arena/services/gladiator.service";
 import { FighterStatistics } from "~/app/pages/arena/shared/fighterStatistics";
 import { Gladiator } from "~/app/pages/arena/shared/gladiator";
 import { IFighter } from "~/app/pages/arena/shared/IFighter";
-import { GameIDService } from "~/app/services/gameID.service";
-import { ScoreRegistrationService } from "~/app/services/scoreRegistration.service";
 import { RunningScoreService } from "../../services/running-score.service";
 
 @Component({
@@ -24,7 +22,7 @@ import { RunningScoreService } from "../../services/running-score.service";
     moduleId: module.id,
     templateUrl: "./arena.component.html"
 })
-export class ArenaComponent implements OnInit {
+export class ArenaComponent {
     private readonly sebastionImage: Image = new Image();
     private readonly lissomeImage: Image = new Image();
 
@@ -34,6 +32,7 @@ export class ArenaComponent implements OnInit {
     private playerTicksToAttack: number;
     private enemyTicksToAttack: number;
 
+    // Utilized a getter and setter to force value to range
     private _crowdEnergyLevel: number = 0;
     set crowdEnergyLevel(newLevel: number) {
         newLevel <= 100 ? newLevel = newLevel : newLevel = 100;
@@ -44,35 +43,26 @@ export class ArenaComponent implements OnInit {
         return this._crowdEnergyLevel;
     }
 
-    constructor(private route: ActivatedRoute,
-                private runningScoreService: RunningScoreService,
-                private scoreRegistrationService: ScoreRegistrationService,
-                private gameIDService: GameIDService,
+    constructor(private runningScoreService: RunningScoreService,
                 private gladiatorService: GladiatorService,
                 private routerExtensions: RouterExtensions) {
+        // READ ONLY PROPERTIES
         this.sebastionImage.src = "~/app/images/Sebastion Right.png";
         this.lissomeImage.src = "~/app/images/Lissome.png";
+
+        // Fight Initialization
         this.player = this.gladiatorService.gladiator;
         this.playerTicksToAttack = this.player.ticksPerAttack;
-    }
 
-    ngOnInit(): void {
-        this.makeEnemy();
+        this.makeEnemy(4);
         this.enemyTicksToAttack = this.enemy.ticksPerAttack;
         trace.write(`Created ${this.enemy.name} with stats:\n` +
-                        `\tStrength: ${this.enemy.fighterStatistics.strength}\n` +
-                        `\tAgility: ${this.enemy.fighterStatistics.agility}\n` +
-                        `\tVitality: ${this.enemy.fighterStatistics.vitality}\n` +
-                        `\tEndurance: ${this.enemy.fighterStatistics.endurance}\n`,
-                        traceCategories.Debug,
-                        traceMessageType.info);
-        // Preconditions for testing behavior in app. Allows last hit win for player that dies to win.
-        // this.playerTicksToAttack = 1;
-        // this.enemyTicksToAttack = 20;
-        // this.player.currentHealth = 1;
-        // this.player.currentStamina = 0;
-        // this.enemy.currentHealth = 1;
-        // this.enemy.currentStamina = 0;
+            `\tStrength: ${this.enemy.fighterStatistics.strength}\n` +
+            `\tAgility: ${this.enemy.fighterStatistics.agility}\n` +
+            `\tVitality: ${this.enemy.fighterStatistics.vitality}\n` +
+            `\tEndurance: ${this.enemy.fighterStatistics.endurance}\n`,
+            traceCategories.Debug,
+            traceMessageType.info);
     }
 
     letEnemyStrike(): any {
@@ -93,11 +83,6 @@ export class ArenaComponent implements OnInit {
                 this.onPlayerWins();
             }
         }
-    }
-
-    onDrawerButtonTap(): void {
-        const sideDrawer = <RadSideDrawer>app.getRootView();
-        sideDrawer.showDrawer();
     }
 
     onAttackTap(eventData: EventData): void {
@@ -128,6 +113,11 @@ export class ArenaComponent implements OnInit {
                 this.onPlayerWins();
             }
         }
+    }
+
+    onDrawerButtonTap(): void {
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.showDrawer();
     }
 
     onEnemyWins(): void {
@@ -188,17 +178,17 @@ export class ArenaComponent implements OnInit {
         }
     }
 
-    makeEnemy(): void {
-        /* Set up a random enemy, within a couple of points of each of the player's stats */
+    makeEnemy(difficultyOffset: number): void {
+        // Set up a random enemy, with some variance based on the difficulty of the match.
         const newStats = new FighterStatistics();
-        // newStats.strength = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.strength);
-        // newStats.agility = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.agility);
-        // newStats.vitality = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.vitality);
-        // newStats.endurance = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.endurance);
-        newStats.strength = 3;
-        newStats.agility = 3;
-        newStats.vitality = 8;
-        newStats.endurance = 9;
+        newStats.strength = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.strength -
+            difficultyOffset);
+        newStats.agility = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.agility -
+            difficultyOffset);
+        newStats.vitality = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.vitality -
+            difficultyOffset);
+        newStats.endurance = Math.round(Math.random() * 4 - 2 + this.player.fighterStatistics.endurance -
+            difficultyOffset);
         this.enemy = new Gladiator("Lissome Auger", newStats);
     }
 }

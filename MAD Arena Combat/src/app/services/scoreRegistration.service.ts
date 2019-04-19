@@ -1,13 +1,13 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 // This service encapsulates the score registration logic, so that consumers can
 // post scores to their respective leaderboards.
 
 import { Injectable } from "@angular/core";
 import * as httpModule from "http";
 import * as trace from "tns-core-modules/trace";
+import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 import { GameIDService } from "./gameID.service";
 import { PlayerService } from "./player.service";
-import { traceCategories, traceMessageType } from "tns-core-modules/ui/page/page";
 
 const validScoreRegex = /^[0-9]{1,9}$/;
 

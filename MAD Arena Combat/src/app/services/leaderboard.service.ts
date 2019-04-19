@@ -1,4 +1,4 @@
-//  Author/s: Lee Shuman
+//  Author: Lee Shuman
 // This service encapsulates the leaderboard request logic, so that the pages are only
 // concerned with how to display the leaderboard elements.
 

@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";

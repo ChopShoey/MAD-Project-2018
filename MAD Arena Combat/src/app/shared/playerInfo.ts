@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 // Player class definition based on leaderboard API service
 
 import * as trace from "tns-core-modules/trace";

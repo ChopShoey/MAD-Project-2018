@@ -1,4 +1,4 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 // This service encapsulates the game information logic, so that the application is only
 // concerned with what the game name/ID is.
 

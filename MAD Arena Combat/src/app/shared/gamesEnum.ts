@@ -1,5 +1,6 @@
-// Author/s: Lee Shuman
+// Author: Lee Shuman
 // Used to make references to games more readable throughout the project
+
 export enum GamesEnum {
     ANGRY_CATS = 0,
     GLADIATOR_COMBAT = 1
